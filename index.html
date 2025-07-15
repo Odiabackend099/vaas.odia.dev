@@ -1,0 +1,3008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ODIA AI - Nigeria's First Voice Intelligence System | Deploy AI Agents in 24hrs</title>
+    <meta name="description" content="Deploy intelligent WhatsApp voice assistants (Lexi & Atlas) for your Nigerian business in 24 hours. Speaks Yoruba, Pidgin, Hausa, Igbo. Starting ₦75,000/month. Powered by Claude AI + n8n automation.">
+    <meta name="keywords" content="AI voice assistant Nigeria, WhatsApp automation, Nigerian languages AI, business automation Nigeria, voice AI Yoruba Pidgin Hausa">
+    <meta name="author" content="ODIA AI LTD">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta property="og:title" content="ODIA AI - Nigeria's First Voice Intelligence System">
+    <meta property="og:description" content="Deploy AI voice assistants that speak Nigerian languages in 24 hours. Transform your business with Lexi & Atlas.">
+    <meta property="og:image" content="https://odia.dev/og-image.jpg">
+    <meta property="og:url" content="https://odia.dev">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Preload critical resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://odia.dev">
+    <link rel="preconnect" href="https://odiabackend.app.n8n.cloud">
+    
+    <!-- Fonts with proper crossorigin and security -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" crossorigin="anonymous" media="all">
+    
+    <!-- Font Awesome with proper crossorigin and security -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" media="all">
+    
+    <!-- DNS prefetch for performance -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    
+    <!-- Critical CSS inline for performance -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #25D366;
+            --primary-dark: #1B5E20;
+            --secondary-blue: #3b82f6;
+            --accent-gold: #f59e0b;
+            --text-primary: #ffffff;
+            --text-secondary: #666;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --shadow-soft: 0 10px 30px rgba(0,0,0,0.1);
+            --shadow-strong: 0 20px 50px rgba(0,0,0,0.15);
+            --gradient-primary: linear-gradient(135deg, #25D366, #1B5E20);
+            --gradient-secondary: linear-gradient(135deg, #3b82f6, #1e3a8a);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            background: #0a0a0a;
+        }
+
+        /* Enhanced Loading Screen */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1B5E20, #25D366);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: all 0.8s ease;
+        }
+
+        .loading.hide {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(1.1);
+        }
+
+        .loading-logo {
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle at 30% 30%, #ffffff 0%, #f8fafc 50%, #e2e8f0 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 2rem;
+            animation: logoGlow 2s ease-in-out infinite alternate;
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .loading-subtitle {
+            color: rgba(255,255,255,0.8);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255,255,255,0.3);
+            border-top: 4px solid #ffffff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        /* Enhanced Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(37, 211, 102, 0.2);
+        }
+
+        .navbar.scrolled {
+            background: rgba(27, 94, 32, 0.98);
+            box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle at 30% 30%, #25D366 0%, #1B5E20 50%, #0f3f1f 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: visible;
+            box-shadow: 
+                0 10px 30px rgba(37, 211, 102, 0.4),
+                inset 0 1px 0 rgba(255,255,255,0.2),
+                0 0 20px rgba(37, 211, 102, 0.3);
+            animation: logoGlow 4s ease-in-out infinite alternate;
+        }
+
+        .spiral-ring-1, .spiral-ring-2, .spiral-ring-3 {
+            position: absolute;
+            border-style: solid;
+            border-color: transparent;
+            border-radius: 50%;
+            animation: spiralRotate 8s linear infinite;
+        }
+
+        .spiral-ring-1 {
+            width: 50px;
+            height: 50px;
+            border-width: 3px;
+            border-top-color: rgba(255, 255, 255, 0.9);
+            border-right-color: rgba(255, 255, 255, 0.7);
+            border-bottom-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .spiral-ring-2 {
+            width: 35px;
+            height: 35px;
+            border-width: 2px;
+            border-top-color: rgba(255, 255, 255, 0.8);
+            border-right-color: rgba(255, 255, 255, 0.6);
+            animation-direction: reverse;
+        }
+
+        .spiral-ring-3 {
+            width: 20px;
+            height: 20px;
+            border-width: 2px;
+            border-top-color: rgba(255, 255, 255, 0.7);
+            border-right-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-links a:hover {
+            color: #25D366;
+            background: rgba(37, 211, 102, 0.1);
+            text-shadow: 0 0 10px rgba(37, 211, 102, 0.5);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Enhanced Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(37, 211, 102, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
+                linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(255,255,255,0.05) 0%, transparent 30%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="neural" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="white" opacity="0.08"/><circle cx="5" cy="5" r="0.5" fill="white" opacity="0.03"/><circle cx="15" cy="15" r="0.5" fill="white" opacity="0.03"/></pattern></defs><rect width="100%" height="100%" fill="url(%23neural)"/></svg>');
+            animation: neuralNetwork 20s ease-in-out infinite;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero-content {
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #25D366 25%, #3b82f6 50%, #25D366 75%, #ffffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradientShift 4s ease-in-out infinite;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            color: #25D366;
+            font-weight: 600;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(37, 211, 102, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 2px solid rgba(37, 211, 102, 0.6);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(37, 211, 102, 0.2);
+            transform: translateY(-4px);
+            border-color: #25D366;
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.4);
+        }
+
+        .trust-indicators {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+            background: rgba(255,255,255,0.05);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .trust-item i {
+            color: #25D366;
+        }
+
+        /* Enhanced Phone Mockup */
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .phone-mockup {
+            width: 320px;
+            height: 640px;
+            background: linear-gradient(145deg, #000 0%, #1a1a1a 100%);
+            border-radius: 40px;
+            padding: 25px;
+            box-shadow: 
+                0 25px 80px rgba(0,0,0,0.4),
+                inset 0 1px 0 rgba(255,255,255,0.1),
+                0 0 0 1px rgba(255,255,255,0.05);
+            position: relative;
+            transform: perspective(1000px) rotateY(-15deg) rotateX(5deg);
+            animation: phoneFloat 6s ease-in-out infinite;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 30%, #25D366 0%, #1B5E20 40%, #0f3f1f 100%);
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+
+        /* Enhanced Demo Stages */
+        .demo-stage {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease-out;
+            width: 100%;
+            height: 100%;
+            padding: 1.5rem;
+        }
+
+        .demo-stage.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .conversation-demo {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            height: 400px;
+            overflow-y: auto;
+            width: 100%;
+            padding: 1rem;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 0.8rem;
+            border-radius: 15px;
+            position: relative;
+            animation: messageSlideIn 0.5s ease-out;
+        }
+
+        .customer-msg {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px 15px 15px 5px;
+            align-self: flex-end;
+        }
+
+        .lexi-msg {
+            background: rgba(37, 211, 102, 0.3);
+            border-radius: 15px 15px 5px 15px;
+            align-self: flex-start;
+        }
+
+        .voice-wave {
+            width: 240px;
+            height: 60px;
+            display: flex;
+            align-items: end;
+            justify-content: center;
+            gap: 4px;
+            margin: 1rem 0;
+        }
+
+        .wave-bar {
+            width: 6px;
+            background: linear-gradient(to top, #f8fafc, #25D366);
+            border-radius: 3px;
+            animation: wave 1.8s ease-in-out infinite;
+            box-shadow: 0 0 10px rgba(37, 211, 102, 0.5);
+        }
+
+        /* Enhanced Sections */
+        .section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .section.alternate {
+            background: rgba(255,255,255,0.02);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: white;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff, #25D366);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.8);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Enhanced Problem Cards */
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .problem-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(20px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(37, 211, 102, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #25D366, transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(37, 211, 102, 0.2);
+            border-color: #25D366;
+        }
+
+        .problem-card:hover::before {
+            opacity: 1;
+        }
+
+        .problem-emoji {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .problem-card h3 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .problem-card p {
+            color: rgba(255,255,255,0.8);
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        /* Enhanced Solution Items */
+        .solution-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .solution-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .solution-content h3 {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .solution-content p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .solution-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .solution-features li {
+            padding: 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: rgba(255,255,255,0.9);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .solution-features li::before {
+            content: '✓';
+            color: #25D366;
+            font-weight: bold;
+            background: rgba(37, 211, 102, 0.2);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .solution-visual {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Enhanced Pricing */
+        .pricing {
+            background: linear-gradient(135deg, #0f3f1f, #1B5E20, #25D366);
+            color: white;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            color: white;
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            background: rgba(255,255,255,0.15);
+        }
+
+        .pricing-card.popular {
+            border: 2px solid #25D366;
+            transform: scale(1.05);
+            background: rgba(37, 211, 102, 0.1);
+        }
+
+        .pricing-card.popular::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #25D366;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #25D366;
+            margin: 1rem 0;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .features-list li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .features-list li::before {
+            content: '✓';
+            color: #25D366;
+            font-weight: bold;
+        }
+
+        .payment-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .payment-btn {
+            padding: 1rem;
+            background: linear-gradient(135deg, #25D366, #1B5E20);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .payment-btn:hover {
+            background: linear-gradient(135deg, #1B5E20, #25D366);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Enhanced Testimonials */
+        .testimonial-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(20px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 2rem;
+            position: relative;
+            color: white;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            font-size: 4rem;
+            color: #25D366;
+            position: absolute;
+            top: 1rem;
+            left: 2rem;
+            font-family: serif;
+        }
+
+        .stat {
+            background: #25D366;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-right: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Enhanced Leadership */
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .leader-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(20px);
+            padding: 3rem 2rem;
+            border-radius: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .leader-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+            border-color: #25D366;
+        }
+
+        /* Enhanced Footer */
+        .footer {
+            background: linear-gradient(135deg, #0f3f1f, #1B5E20);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: #25D366;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Enhanced Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(27, 94, 32, 0.98);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            .phone-mockup {
+                width: 280px;
+                height: 560px;
+                transform: none;
+            }
+
+            .solution-item {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.popular {
+                transform: none;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .trust-indicators {
+                justify-content: center;
+            }
+        }
+
+        /* Enhanced Animations */
+        @keyframes logoGlow {
+            0% { 
+                box-shadow: 
+                    0 10px 30px rgba(37, 211, 102, 0.4),
+                    inset 0 1px 0 rgba(255,255,255,0.2),
+                    0 0 20px rgba(37, 211, 102, 0.3);
+                transform: scale(1);
+            }
+            100% { 
+                box-shadow: 
+                    0 15px 40px rgba(37, 211, 102, 0.6),
+                    inset 0 1px 0 rgba(255,255,255,0.3),
+                    0 0 30px rgba(37, 211, 102, 0.6);
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes spiralRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes neuralNetwork {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(10px) translateY(-5px); }
+            50% { transform: translateX(-5px) translateY(10px); }
+            75% { transform: translateX(5px) translateY(-10px); }
+        }
+
+        @keyframes phoneFloat {
+            0%, 100% { 
+                transform: perspective(1000px) rotateY(-15deg) rotateX(5deg) translateY(0px);
+            }
+            50% { 
+                transform: perspective(1000px) rotateY(-15deg) rotateX(5deg) translateY(-15px);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes wave {
+            0%, 100% { 
+                transform: scaleY(1);
+                opacity: 0.8;
+            }
+            50% { 
+                transform: scaleY(0.2);
+                opacity: 1;
+            }
+        }
+
+        @keyframes messageSlideIn {
+            0% { 
+                transform: translateX(30px);
+                opacity: 0;
+            }
+            100% { 
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Enhanced CSS Loading Protection */
+        .css-loading-protection {
+            font-display: swap; /* Ensure fonts load properly */
+        }
+
+        /* Fallback fonts in case external fonts fail */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        .logo, h1, h2, h3, .hero-content h1, .section-header h2 {
+            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        /* Fallback for Font Awesome icons */
+        .fa, .fas, .fab, .far {
+            font-family: 'Font Awesome 6 Free', 'Font Awesome 6 Brands', monospace;
+            font-display: swap;
+        }
+
+        /* Icon fallbacks when Font Awesome fails */
+        .icons-fallback .fa-rocket::before { content: '🚀'; }
+        .icons-fallback .fa-whatsapp::before { content: '💬'; }
+        .icons-fallback .fa-play::before { content: '▶️'; }
+        .icons-fallback .fa-shield-alt::before { content: '🛡️'; }
+        .icons-fallback .fa-clock::before { content: '⏰'; }
+        .icons-fallback .fa-language::before { content: '🌐'; }
+        .icons-fallback .fa-naira-sign::before { content: '₦'; }
+        .icons-fallback .fa-bars::before { content: '☰'; }
+        .icons-fallback .fa-times::before { content: '✕'; }
+
+        /* Font fallback styles */
+        .fonts-fallback {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+        }
+
+        .fonts-fallback .logo,
+        .fonts-fallback h1, 
+        .fonts-fallback h2, 
+        .fonts-fallback h3 {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+            font-weight: 700 !important;
+        }
+
+        /* Prevent CSS rule access issues */
+        @media screen {
+            * {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+        }
+        .phone-mockup,
+        .problem-card,
+        .solution-visual,
+        .pricing-card,
+        .testimonial-card,
+        .leader-card {
+            will-change: transform;
+        }
+
+        /* Accessibility Improvements */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        .btn:focus,
+        .nav-links a:focus,
+        .payment-btn:focus {
+            outline: 2px solid #25D366;
+            outline-offset: 2px;
+        }
+
+        /* Enhanced CTAs */
+        .cta-floating {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 999;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1rem;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
+            animation: pulse 2s ease-in-out infinite;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1.5rem;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Enhanced Performance Loading */
+        .lazy-load {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lazy-load.loaded {
+            opacity: 1;
+        }
+
+        /* Conversion Tracking Elements */
+        .conversion-trigger {
+            position: relative;
+        }
+
+        .conversion-trigger::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            border: 2px solid transparent;
+            border-radius: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .conversion-trigger:hover::after {
+            border-color: #25D366;
+        }
+
+        /* Nigerian Business Context Enhancements */
+        .naira {
+            font-weight: bold;
+            color: #25D366;
+        }
+
+        .nigerian-flag {
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+
+        .local-time {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Enhanced Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="loading-logo">
+            <div class="spiral-ring-1"></div>
+            <div class="spiral-ring-2"></div>
+            <div class="spiral-ring-3"></div>
+        </div>
+        <div class="loading-text">🇳🇬 ODIA AI</div>
+        <div class="loading-subtitle">Nigeria's First Voice Intelligence System</div>
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Enhanced Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <div class="logo-icon">
+                    <div class="spiral-ring-1"></div>
+                    <div class="spiral-ring-2"></div>
+                    <div class="spiral-ring-3"></div>
+                </div>
+                ODIA AI
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#agents">AI Agents</a></li>
+                <li><a href="#solutions">Solutions</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#testimonials">Success Stories</a></li>
+                <li><a href="#team">Leadership</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Enhanced Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Meet Lexi & Atlas — Your <span class="highlight">Nigerian Voice AI Agents</span></h1>
+                <p class="hero-subtitle">
+                    Two specialized AI agents trained specifically for Nigerian businesses. <span class="highlight">Lexi</span> handles customer service & sales, <span class="highlight">Atlas</span> manages technical support & appointments. Both speak English, Yoruba, Hausa, Igbo, and Pidgin - <strong>24/7, even while you sleep</strong>.
+                </p>
+                
+                <div class="cta-buttons">
+                    <a href="#agents" class="btn btn-primary conversion-trigger">
+                        <i class="fas fa-rocket"></i>
+                        Meet Our Agents
+                    </a>
+                    <a href="https://wa.me/2348141995397?text=Hello,%20I%20want%20to%20try%20ODIA%20AI%20agents" class="btn btn-secondary conversion-trigger">
+                        <i class="fab fa-whatsapp"></i>
+                        Talk to Lexi Now
+                    </a>
+                </div>
+
+                <div class="trust-indicators">
+                    <div class="trust-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span class="nigerian-flag">🇳🇬</span> NDPR Compliant
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-clock"></i>
+                        24hr Setup Guaranteed
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-language"></i>
+                        5 Nigerian Languages
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-naira-sign"></i>
+                        <span class="naira">Pay in Naira</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual" id="demo">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="phone-demo-content">
+                            <!-- Stage 1: Welcome Screen -->
+                            <div class="demo-stage demo-stage-1 active">
+                                <div style="text-align: center; padding: 2rem;">
+                                    <div class="loading-logo" style="width: 80px; height: 80px; margin: 0 auto 1.5rem;">
+                                        <div class="spiral-ring-1"></div>
+                                        <div class="spiral-ring-2"></div>
+                                        <div class="spiral-ring-3"></div>
+                                    </div>
+                                    <h4 style="color: white; margin-bottom: 1rem; font-size: 1.2rem;">Welcome to ODIA AI</h4>
+                                    <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-bottom: 2rem;">Nigeria's First Voice Intelligence System</p>
+                                    <div style="width: 200px; height: 4px; background: rgba(255,255,255,0.2); border-radius: 2px; margin: 0 auto; overflow: hidden;">
+                                        <div style="width: 100%; height: 100%; background: linear-gradient(90deg, #25D366, #4ade80); animation: loadingProgress 2s ease-out;"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Stage 2: Language Selection -->
+                            <div class="demo-stage demo-stage-2">
+                                <div style="text-align: center; padding: 2rem;">
+                                    <h4 style="color: white; margin-bottom: 2rem; font-size: 1.1rem;">Choose your language</h4>
+                                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                                        <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 12px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2);">
+                                            <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🇳🇬</div>
+                                            <div style="font-size: 0.9rem; color: white;">English</div>
+                                        </div>
+                                        <div style="background: rgba(37, 211, 102, 0.3); padding: 1rem; border-radius: 12px; backdrop-filter: blur(10px); border: 2px solid #25D366; position: relative;">
+                                            <div style="position: absolute; top: -10px; right: -10px; width: 30px; height: 30px; background: rgba(37, 211, 102, 0.8); border-radius: 50%; animation: pulse 1s ease-out;"></div>
+                                            <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🇳🇬</div>
+                                            <div style="font-size: 0.9rem; color: white; font-weight: 600;">Yoruba</div>
+                                        </div>
+                                        <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 12px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2);">
+                                            <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🇳🇬</div>
+                                            <div style="font-size: 0.9rem; color: white;">Hausa</div>
+                                        </div>
+                                        <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 12px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2);">
+                                            <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🇳🇬</div>
+                                            <div style="font-size: 0.9rem; color: white;">Pidgin</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Stage 3: Business Type Selection -->
+                            <div class="demo-stage demo-stage-3">
+                                <div style="text-align: center; padding: 2rem;">
+                                    <h4 style="color: white; margin-bottom: 2rem; font-size: 1.1rem;">What's your business type?</h4>
+                                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                                        <div style="background: rgba(37, 211, 102, 0.3); padding: 1.2rem; border-radius: 15px; border: 2px solid #25D366; position: relative;">
+                                            <div style="position: absolute; top: -10px; right: -10px; width: 30px; height: 30px; background: rgba(37, 211, 102, 0.8); border-radius: 50%; animation: pulse 1s ease-out;"></div>
+                                            <div style="font-size: 2rem; margin-bottom: 0.8rem;">🍽️</div>
+                                            <div style="font-size: 1rem; color: white; font-weight: 600;">Restaurant</div>
+                                        </div>
+                                        <div style="background: rgba(255,255,255,0.1); padding: 1.2rem; border-radius: 15px; border: 1px solid rgba(255,255,255,0.2);">
+                                            <div style="font-size: 2rem; margin-bottom: 0.8rem;">🏥</div>
+                                            <div style="font-size: 1rem; color: white;">Clinic</div>
+                                        </div>
+                                        <div style="background: rgba(255,255,255,0.1); padding: 1.2rem; border-radius: 15px; border: 1px solid rgba(255,255,255,0.2);">
+                                            <div style="font-size: 2rem; margin-bottom: 0.8rem;">🛒</div>
+                                            <div style="font-size: 1rem; color: white;">Retail Store</div>
+                                        </div>
+                                        <div style="background: rgba(255,255,255,0.1); padding: 1.2rem; border-radius: 15px; border: 1px solid rgba(255,255,255,0.2);">
+                                            <div style="font-size: 2rem; margin-bottom: 0.8rem;">🔧</div>
+                                            <div style="font-size: 1rem; color: white;">Service</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Stage 4: Agent Assignment -->
+                            <div class="demo-stage demo-stage-4">
+                                <div style="text-align: center; padding: 2rem;">
+                                    <div style="width: 100px; height: 100px; background: linear-gradient(135deg, #25D366, #4ade80); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 1.5rem; animation: fadeInUp 1s ease-out;">👩🏾‍💼</div>
+                                    <h4 style="color: white; margin-bottom: 0.5rem; font-size: 1.3rem;">Meet Agent Lexi</h4>
+                                    <p style="color: rgba(255,255,255,0.8); margin-bottom: 1.5rem; font-size: 1rem;">Your AI Assistant for Restaurant Orders</p>
+                                    <div style="background: rgba(255,255,255,0.1); padding: 1rem 1.5rem; border-radius: 20px; backdrop-filter: blur(10px); border: 1px solid rgba(37, 211, 102, 0.3);">
+                                        <span style="color: #25D366; font-size: 1rem; font-weight: 600;">✓ Ready to handle calls in Yoruba</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Stage 5: Live Demo Call -->
+                            <div class="demo-stage demo-stage-5">
+                                <div style="padding: 1.5rem;">
+                                    <h4 style="color: white; margin-bottom: 1.5rem; font-size: 1.1rem; text-align: center;">Live Call Demo</h4>
+                                    <div class="conversation-demo">
+                                        <div class="message customer-msg" style="animation-delay: 0s;">
+                                            <div style="font-size: 0.7rem; color: rgba(255,255,255,0.6); margin-bottom: 0.3rem;">Customer</div>
+                                            <div style="color: white; font-size: 0.9rem;">"Mo fe order jollof rice"</div>
+                                        </div>
+                                        <div class="message lexi-msg" style="animation-delay: 1.5s; animation-fill-mode: both;">
+                                            <div style="font-size: 0.7rem; color: rgba(255,255,255,0.6); margin-bottom: 0.3rem;">Agent Lexi</div>
+                                            <div style="color: white; font-size: 0.9rem;">"E kaaro! How many plates you want?"</div>
+                                        </div>
+                                        <div class="message customer-msg" style="animation-delay: 3s; animation-fill-mode: both;">
+                                            <div style="font-size: 0.7rem; color: rgba(255,255,255,0.6); margin-bottom: 0.3rem;">Customer</div>
+                                            <div style="color: white; font-size: 0.9rem;">"Three plates for delivery"</div>
+                                        </div>
+                                        <div class="message lexi-msg" style="animation-delay: 4.5s; animation-fill-mode: both;">
+                                            <div style="font-size: 0.7rem; color: rgba(255,255,255,0.6); margin-bottom: 0.3rem;">Agent Lexi</div>
+                                            <div style="color: white; font-size: 0.9rem;">"Perfect! Your order is <span class='naira'>₦4,500</span>. Location?"</div>
+                                        </div>
+                                        <div class="message customer-msg" style="animation-delay: 6s; animation-fill-mode: both;">
+                                            <div style="font-size: 0.7rem; color: rgba(255,255,255,0.6); margin-bottom: 0.3rem;">Customer</div>
+                                            <div style="color: white; font-size: 0.9rem;">"Ikeja"</div>
+                                        </div>
+                                        <div class="message lexi-msg" style="animation-delay: 7.5s; animation-fill-mode: both;">
+                                            <div style="font-size: 0.7rem; color: rgba(255,255,255,0.6); margin-bottom: 0.3rem;">Agent Lexi</div>
+                                            <div style="color: white; font-size: 0.9rem;">"Order confirmed! 30 minutes delivery 🚚"</div>
+                                        </div>
+                                    </div>
+                                    <div class="voice-wave">
+                                        <div class="wave-bar" style="height: 20px; animation-delay: 0s;"></div>
+                                        <div class="wave-bar" style="height: 35px; animation-delay: 0.1s;"></div>
+                                        <div class="wave-bar" style="height: 50px; animation-delay: 0.2s;"></div>
+                                        <div class="wave-bar" style="height: 25px; animation-delay: 0.3s;"></div>
+                                        <div class="wave-bar" style="height: 40px; animation-delay: 0.4s;"></div>
+                                        <div class="wave-bar" style="height: 30px; animation-delay: 0.5s;"></div>
+                                        <div class="wave-bar" style="height: 45px; animation-delay: 0.6s;"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Stage 6: n8n Automation -->
+                            <div class="demo-stage demo-stage-6">
+                                <div style="padding: 2rem; text-align: center;">
+                                    <h4 style="color: white; margin-bottom: 2rem; font-size: 1.1rem;">n8n Automation in Action</h4>
+                                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                                        <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 12px; animation: fadeInUp 1s ease-out;">
+                                            <div style="width: 30px; height: 30px; background: #22c55e; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.8rem; font-weight: bold;">1</div>
+                                            <span style="color: white; font-size: 0.9rem; flex: 1;">Order → Kitchen</span>
+                                            <div style="color: #22c55e; font-size: 1.2rem;">✓</div>
+                                        </div>
+                                        <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 12px; animation: fadeInUp 1s ease-out 0.5s both;">
+                                            <div style="width: 30px; height: 30px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.8rem; font-weight: bold;">2</div>
+                                            <span style="color: white; font-size: 0.9rem; flex: 1;">Payment → Processed</span>
+                                            <div style="color: #22c55e; font-size: 1.2rem;">✓</div>
+                                        </div>
+                                        <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 12px; animation: fadeInUp 1s ease-out 1s both;">
+                                            <div style="width: 30px; height: 30px; background: #8b5cf6; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.8rem; font-weight: bold;">3</div>
+                                            <span style="color: white; font-size: 0.9rem; flex: 1;">SMS → Customer</span>
+                                            <div style="color: #22c55e; font-size: 1.2rem;">✓</div>
+                                        </div>
+                                        <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 12px; animation: fadeInUp 1s ease-out 1.5s both;">
+                                            <div style="width: 30px; height: 30px; background: #f59e0b; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.8rem; font-weight: bold;">4</div>
+                                            <span style="color: white; font-size: 0.9rem; flex: 1;">Analytics → Updated</span>
+                                            <div style="color: #22c55e; font-size: 1.2rem;">✓</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Stage 7: Dashboard -->
+                            <div class="demo-stage demo-stage-7">
+                                <div style="padding: 2rem; text-align: center;">
+                                    <h4 style="color: white; margin-bottom: 2rem; font-size: 1.1rem;">Your Business Dashboard</h4>
+                                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                                        <div style="background: rgba(34, 197, 94, 0.2); padding: 1.2rem; border-radius: 15px; border: 1px solid rgba(34, 197, 94, 0.3); animation: fadeInUp 0.8s ease-out;">
+                                            <div style="font-size: 1.8rem; color: #22c55e; font-weight: bold; margin-bottom: 0.5rem;">47</div>
+                                            <div style="font-size: 0.8rem; color: rgba(255,255,255,0.8);">Calls Today</div>
+                                        </div>
+                                        <div style="background: rgba(59, 130, 246, 0.2); padding: 1.2rem; border-radius: 15px; border: 1px solid rgba(59, 130, 246, 0.3); animation: fadeInUp 0.8s ease-out 0.2s both;">
+                                            <div style="font-size: 1.8rem; color: #3b82f6; font-weight: bold; margin-bottom: 0.5rem;">94%</div>
+                                            <div style="font-size: 0.8rem; color: rgba(255,255,255,0.8);">Success Rate</div>
+                                        </div>
+                                        <div style="background: rgba(245, 158, 11, 0.2); padding: 1.2rem; border-radius: 15px; border: 1px solid rgba(245, 158, 11, 0.3); animation: fadeInUp 0.8s ease-out 0.4s both;">
+                                            <div style="font-size: 1.5rem; color: #f59e0b; font-weight: bold; margin-bottom: 0.5rem;"><span class='naira'>₦125k</span></div>
+                                            <div style="font-size: 0.8rem; color: rgba(255,255,255,0.8);">Revenue</div>
+                                        </div>
+                                        <div style="background: rgba(139, 92, 246, 0.2); padding: 1.2rem; border-radius: 15px; border: 1px solid rgba(139, 92, 246, 0.3); animation: fadeInUp 0.8s ease-out 0.6s both;">
+                                            <div style="font-size: 1.8rem; color: #8b5cf6; font-weight: bold; margin-bottom: 0.5rem;">98%</div>
+                                            <div style="font-size: 0.8rem; color: rgba(255,255,255,0.8);">Satisfaction</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Stage 8: Success Message -->
+                            <div class="demo-stage demo-stage-8">
+                                <div style="padding: 2rem; text-align: center;">
+                                    <div style="width: 80px; height: 80px; background: #22c55e; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; animation: fadeInUp 1s ease-out;">
+                                        <span style="font-size: 2.5rem; color: white;">✓</span>
+                                    </div>
+                                    <h4 style="color: white; margin-bottom: 1rem; font-size: 1.2rem;">That's how easy ODIA AI works!</h4>
+                                    <p style="color: rgba(255,255,255,0.8); margin-bottom: 2rem; font-size: 0.9rem;">Ready to transform your business?</p>
+                                    <a href="https://odiabackend.app.n8n.cloud/webhook/free-trial-start" style="background: linear-gradient(135deg, #25D366, #22c55e); color: white; border: none; padding: 1rem 2rem; border-radius: 25px; font-weight: 600; cursor: pointer; animation: pulse 2s ease-in-out infinite; text-decoration: none; display: inline-block;">
+                                        Start Your Free Trial
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Problems Section -->
+    <section class="section problems alternate">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Every Nigerian Business Owner Knows These Struggles</h2>
+                <p>You're losing money every day because of these common problems. Sound familiar?</p>
+            </div>
+            <div class="problems-grid">
+                <div class="problem-card fade-in">
+                    <span class="problem-emoji">😤</span>
+                    <h3>Missed Calls = Lost Sales</h3>
+                    <p>"My phone was ringing while I was serving customers. By the time I called back, they already bought from my competitor. I probably lost <span class="naira">₦50,000</span> in sales last week alone."</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <span class="problem-emoji">🌙</span>
+                    <h3>No Night Sales</h3>
+                    <p>"Customers call at 11PM wanting to order food, but I can't answer. My restaurant sleeps when Lagos is still hungry. That's money walking out the door."</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <span class="problem-emoji">😕</span>
+                    <h3>Language Barriers</h3>
+                    <p>"My sales girl speaks only English, but 70% of my customers are more comfortable with Yoruba or Pidgin. We lose deals because of communication problems."</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <span class="problem-emoji">💸</span>
+                    <h3>Expensive Staff</h3>
+                    <p>"I pay <span class="naira">₦80,000</span> monthly for a receptionist, plus phone bills, plus her salary when she's sick. Small businesses like mine can't afford dedicated phone staff."</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <span class="problem-emoji">📱</span>
+                    <h3>WhatsApp Overwhelm</h3>
+                    <p>"My WhatsApp Business has 500 unread messages. I spend 3 hours daily just replying to basic questions. When do I actually run my business?"</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <span class="problem-emoji">🤯</span>
+                    <h3>Inconsistent Service</h3>
+                    <p>"When my staff is tired, moody, or doesn't know the answer, customers get frustrated. Bad service spreads faster than good news in Nigeria."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced AI Agents Section -->
+    <section id="agents" class="section solutions">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Meet Your Nigerian AI Agents</h2>
+                <p>Two specialized agents, each trained for specific Nigerian business needs</p>
+            </div>
+
+            <div class="solution-item fade-in">
+                <div class="solution-content">
+                    <h3>🌟 Agent Lexi - Your Customer Service Specialist</h3>
+                    <p>Lexi is your friendly, professional customer service agent. Trained specifically on Nigerian customer behavior, local expressions, and business etiquette. She handles sales, orders, complaints, and general inquiries with the warmth Nigerians expect.</p>
+                    <ul class="solution-features">
+                        <li>Takes orders in perfect Yoruba, Pidgin, Hausa, Igbo</li>
+                        <li>Processes payments through Nigerian payment systems</li>
+                        <li>Handles complaints with cultural sensitivity</li>
+                        <li>Captures leads and customer information automatically</li>
+                        <li>Integrated with n8n for instant order processing</li>
+                        <li>Available 24/7 with <span class="naira">99.9%</span> uptime</li>
+                    </ul>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="https://odiabackend.app.n8n.cloud/webhook/lexi-demo" class="btn btn-primary conversion-trigger">Talk to Lexi Now</a>
+                        <a href="https://wa.me/2348141995397?text=I%20want%20to%20try%20Agent%20Lexi" class="btn btn-secondary conversion-trigger" style="margin-left: 1rem;">WhatsApp Demo</a>
+                    </div>
+                </div>
+                <div class="solution-visual">
+                    <div style="text-align: center; color: white;">
+                        <h4>🗣️ Lexi Live Demo</h4>
+                        <div style="background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 15px; border: 1px solid rgba(37, 211, 102, 0.3); backdrop-filter: blur(20px);">
+                            <p style="font-size: 1rem; margin-bottom: 1.5rem; font-weight: bold; color: #25D366;">Real conversation example:</p>
+                            <div style="text-align: left; space-y: 1rem;">
+                                <p style="font-size: 0.9rem; margin-bottom: 0.8rem; color: #25D366; padding: 0.5rem; background: rgba(37, 211, 102, 0.1); border-radius: 8px;"><strong>Lexi:</strong> "Good afternoon o! This na Lexi from Mama Kitchen. How I fit help you today?"</p>
+                                <p style="font-size: 0.9rem; margin-bottom: 0.8rem; color: rgba(255,255,255,0.8); padding: 0.5rem; background: rgba(255,255,255,0.05); border-radius: 8px;"><strong>Customer:</strong> "I wan order jollof rice for 4 people"</p>
+                                <p style="font-size: 0.9rem; margin-bottom: 0.8rem; color: #25D366; padding: 0.5rem; background: rgba(37, 211, 102, 0.1); border-radius: 8px;"><strong>Lexi:</strong> "Perfect! 4 plates family size jollof rice. You want chicken, beef or mixed? And which area for delivery?"</p>
+                            </div>
+                            <div style="background: rgba(37, 211, 102, 0.1); padding: 1rem; border-radius: 10px; margin-top: 1.5rem; border: 1px solid rgba(37, 211, 102, 0.3);">
+                                <p style="font-size: 0.8rem; color: #25D366; margin: 0; text-align: center;">
+                                    🤖 <em>Automatically sends order to kitchen via n8n automation</em>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="solution-item fade-in">
+                <div class="solution-content">
+                    <h3>⚡ Agent Atlas - Your Technical Support Expert</h3>
+                    <p>Atlas is your technical powerhouse. Specialized in appointments, troubleshooting, service bookings, and complex inquiries. He understands Nigerian infrastructure challenges and provides solutions that actually work in our environment.</p>
+                    <ul class="solution-features">
+                        <li>Books appointments with Nigerian timing considerations</li>
+                        <li>Troubleshoots technical issues in local context</li>
+                        <li>Handles service requests and follow-ups</li>
+                        <li>Manages inventory and availability checks</li>
+                        <li>Integrated with n8n for automated workflows</li>
+                        <li>Understands Nigerian infrastructure challenges</li>
+                    </ul>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="https://odiabackend.app.n8n.cloud/webhook/atlas-demo" class="btn btn-primary conversion-trigger">Talk to Atlas Now</a>
+                        <a href="https://wa.me/2348141995397?text=I%20want%20to%20try%20Agent%20Atlas" class="btn btn-secondary conversion-trigger" style="margin-left: 1rem;">WhatsApp Demo</a>
+                    </div>
+                </div>
+                <div class="solution-visual">
+                    <div style="text-align: center; color: white;">
+                        <h4>🔧 Atlas Live Demo</h4>
+                        <div style="background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 15px; border: 1px solid rgba(59, 130, 246, 0.3); backdrop-filter: blur(20px);">
+                            <p style="font-size: 1rem; margin-bottom: 1.5rem; font-weight: bold; color: #3b82f6;">Real technical support:</p>
+                            <div style="text-align: left;">
+                                <p style="font-size: 0.9rem; margin-bottom: 0.8rem; color: #3b82f6; padding: 0.5rem; background: rgba(59, 130, 246, 0.1); border-radius: 8px;"><strong>Atlas:</strong> "Good morning! Atlas here from TechFix Nigeria. How can I assist you today?"</p>
+                                <p style="font-size: 0.9rem; margin-bottom: 0.8rem; color: rgba(255,255,255,0.8); padding: 0.5rem; background: rgba(255,255,255,0.05); border-radius: 8px;"><strong>Customer:</strong> "My generator no dey start since yesterday"</p>
+                                <p style="font-size: 0.9rem; margin-bottom: 0.8rem; color: #3b82f6; padding: 0.5rem; background: rgba(59, 130, 246, 0.1); border-radius: 8px;"><strong>Atlas:</strong> "I understand your frustration. Let's check the fuel level first, then the spark plug. I can also book a technician visit if needed."</p>
+                            </div>
+                            <div style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: 10px; margin-top: 1.5rem; border: 1px solid rgba(59, 130, 246, 0.3);">
+                                <p style="font-size: 0.8rem; color: #3b82f6; margin: 0; text-align: center;">
+                                    🤖 <em>Auto-schedules technician visit via n8n workflow</em>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="solution-item fade-in">
+                <div class="solution-content">
+                    <h3>🔄 Full Automation with n8n Integration</h3>
+                    <p>Both agents are connected to powerful n8n automation workflows. When they take an order, book an appointment, or capture a lead, everything happens automatically in your business systems. No manual work needed.</p>
+                    <ul class="solution-features">
+                        <li>Automatic order processing and kitchen notifications</li>
+                        <li>Real-time inventory updates and stock alerts</li>
+                        <li>Customer data sync to your CRM/database</li>
+                        <li>Payment processing and receipt generation</li>
+                        <li>Follow-up messages and appointment reminders</li>
+                        <li>Complete audit trail and analytics</li>
+                    </ul>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="https://odiabackend.app.n8n.cloud/webhook/automation-demo" class="btn btn-primary conversion-trigger">See Automation Demo</a>
+                        <a href="https://odiabackend.app.n8n.cloud/webhook/setup-consultation" class="btn btn-secondary conversion-trigger" style="margin-left: 1rem;">Book Setup Call</a>
+                    </div>
+                </div>
+                <div class="solution-visual">
+                    <div style="text-align: center; color: white;">
+                        <h4>⚙️ Automation Flow</h4>
+                        <div style="background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 15px; border: 1px solid rgba(139, 92, 246, 0.3); backdrop-filter: blur(20px);">
+                            <div style="display: flex; flex-direction: column; gap: 1rem; font-size: 0.9rem;">
+                                <div style="background: linear-gradient(135deg, #25D366, #22c55e); color: white; padding: 0.8rem; border-radius: 8px; display: flex; align-items: center; gap: 0.5rem;">
+                                    <span style="background: rgba(255,255,255,0.2); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;">1</span>
+                                    <span>Customer calls Lexi</span>
+                                </div>
+                                <div style="background: linear-gradient(135deg, #1B5E20, #25D366); color: white; padding: 0.8rem; border-radius: 8px; display: flex; align-items: center; gap: 0.5rem;">
+                                    <span style="background: rgba(255,255,255,0.2); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;">2</span>
+                                    <span>Order taken in Pidgin</span>
+                                </div>
+                                <div style="background: linear-gradient(135deg, #3b82f6, #1e40af); color: white; padding: 0.8rem; border-radius: 8px; display: flex; align-items: center; gap: 0.5rem;">
+                                    <span style="background: rgba(255,255,255,0.2); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;">3</span>
+                                    <span>n8n auto-processes</span>
+                                </div>
+                                <div style="background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: white; padding: 0.8rem; border-radius: 8px; display: flex; align-items: center; gap: 0.5rem;">
+                                    <span style="background: rgba(255,255,255,0.2); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;">4</span>
+                                    <span>Kitchen gets order</span>
+                                </div>
+                                <div style="background: linear-gradient(135deg, #f59e0b, #d97706); color: white; padding: 0.8rem; border-radius: 8px; display: flex; align-items: center; gap: 0.5rem;">
+                                    <span style="background: rgba(255,255,255,0.2); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;">5</span>
+                                    <span>Customer gets SMS</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Solutions Section -->
+    <section id="solutions" class="section alternate">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Complete Business Solutions</h2>
+                <p>Each service includes dedicated agent assignment and full n8n automation</p>
+            </div>
+
+            <div class="solution-item fade-in">
+                <div class="solution-content">
+                    <h3>🍽️ Restaurant & Food Business (Agent Lexi)</h3>
+                    <p>Lexi specializes in food orders, understands Nigerian dishes, handles delivery logistics, and processes payments. Perfect for restaurants, food vendors, and catering services.</p>
+                    <ul class="solution-features">
+                        <li>Menu-specific conversations in local languages</li>
+                        <li>Delivery address verification and timing</li>
+                        <li>Payment processing with Nigerian methods (Bank Transfer, Cards, USSD)</li>
+                        <li>Kitchen automation via n8n workflows</li>
+                        <li>Real-time order tracking and customer updates</li>
+                        <li>Integration with delivery services and POS systems</li>
+                    </ul>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="https://odiabackend.app.n8n.cloud/webhook/restaurant-setup" class="btn btn-primary conversion-trigger">Setup Restaurant Service</a>
+                        <span class="local-time" style="margin-left: 1rem; font-size: 0.9rem;">⏰ Setup completed in 24 hours</span>
+                    </div>
+                </div>
+                <div class="solution-visual">
+                    <div style="text-align: center; color: white;">
+                        <h4>🍲 Restaurant Demo</h4>
+                        <div style="background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 15px; border: 1px solid rgba(37, 211, 102, 0.3);">
+                            <p style="margin: 1rem 0; font-style: italic; color: rgba(255,255,255,0.9);">"I wan order 3 plates jollof rice with chicken for Ikeja delivery"</p>
+                            <div style="text-align: left; font-size: 0.9rem; color: rgba(255,255,255,0.8);">
+                                <p>→ Lexi confirms order details</p>
+                                <p>→ n8n processes payment via Flutterwave</p>
+                                <p>→ Kitchen gets notification</p>
+                                <p>→ Customer gets SMS update</p>
+                                <p>→ Delivery tracking activated</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="solution-item fade-in">
+                <div class="solution-content">
+                    <h3>🏥 Healthcare & Medical (Agent Atlas)</h3>
+                    <p>Atlas handles medical appointments, patient inquiries, prescription reminders, and emergency routing. Trained on Nigerian healthcare terminology and local medical practices.</p>
+                    <ul class="solution-features">
+                        <li>Appointment booking with doctor availability</li>
+                        <li>Symptom screening and triage assistance</li>
+                        <li>Prescription refill reminders</li>
+                        <li>Medical record automation via n8n</li>
+                        <li>Insurance verification and claims assistance</li>
+                        <li>Emergency contact and routing protocols</li>
+                    </ul>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="https://odiabackend.app.n8n.cloud/webhook/healthcare-setup" class="btn btn-primary conversion-trigger">Setup Healthcare Service</a>
+                        <span class="local-time" style="margin-left: 1rem; font-size: 0.9rem;">🏥 NDPR & HIPAA compliant</span>
+                    </div>
+                </div>
+                <div class="solution-visual">
+                    <div style="text-align: center; color: white;">
+                        <h4>🩺 Medical Demo</h4>
+                        <div style="background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 15px; border: 1px solid rgba(59, 130, 246, 0.3);">
+                            <p style="margin: 1rem 0; font-style: italic; color: rgba(255,255,255,0.9);">"I need to book appointment for malaria test tomorrow"</p>
+                            <div style="text-align: left; font-size: 0.9rem; color: rgba(255,255,255,0.8);">
+                                <p>→ Atlas checks doctor availability</p>
+                                <p>→ n8n syncs with hospital calendar</p>
+                                <p>→ Appointment confirmed instantly</p>
+                                <p>→ SMS reminder sent to patient</p>
+                                <p>→ Medical record updated</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="solution-item fade-in">
+                <div class="solution-content">
+                    <h3>🛒 Retail & E-commerce (Agent Lexi)</h3>
+                    <p>Lexi manages product inquiries, inventory checks, order processing, and customer support. Perfect for fashion stores, electronics shops, and online retailers.</p>
+                    <ul class="solution-features">
+                        <li>Product catalog management and search</li>
+                        <li>Inventory real-time availability checks</li>
+                        <li>Order tracking and status updates</li>
+                        <li>Customer database automation via n8n</li>
+                        <li>Return and refund processing</li>
+                        <li>Integration with Shopify, WooCommerce, and local platforms</li>
+                    </ul>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="https://odiabackend.app.n8n.cloud/webhook/retail-setup" class="btn btn-primary conversion-trigger">Setup Retail Service</a>
+                        <span class="local-time" style="margin-left: 1rem; font-size: 0.9rem;">🛍️ Supports all major Nigerian payment methods</span>
+                    </div>
+                </div>
+                <div class="solution-visual">
+                    <div style="text-align: center; color: white;">
+                        <h4>👕 Retail Demo</h4>
+                        <div style="background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 15px; border: 1px solid rgba(245, 158, 11, 0.3);">
+                            <p style="margin: 1rem 0; font-style: italic; color: rgba(255,255,255,0.9);">"You get size 42 for this shoe? How much?"</p>
+                            <div style="text-align: left; font-size: 0.9rem; color: rgba(255,255,255,0.8);">
+                                <p>→ Lexi checks real-time inventory</p>
+                                <p>→ n8n confirms stock across locations</p>
+                                <p>→ Price and availability provided</p>
+                                <p>→ Order processed if customer ready</p>
+                                <p>→ Payment link sent via WhatsApp</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="solution-item fade-in">
+                <div class="solution-content">
+                    <h3>🔧 Technical Services (Agent Atlas)</h3>
+                    <p>Atlas specializes in service bookings, technical support, maintenance scheduling, and troubleshooting. Perfect for repair services, IT support, and professional services.</p>
+                    <ul class="solution-features">
+                        <li>Service request intake and categorization</li>
+                        <li>Technician scheduling and dispatch</li>
+                        <li>Follow-up and feedback collection</li>
+                        <li>Work order management via n8n</li>
+                        <li>Parts ordering and inventory management</li>
+                        <li>Customer satisfaction tracking and analytics</li>
+                    </ul>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="https://odiabackend.app.n8n.cloud/webhook/technical-setup" class="btn btn-primary conversion-trigger">Setup Technical Service</a>
+                        <span class="local-time" style="margin-left: 1rem; font-size: 0.9rem;">⚡ Integrates with existing field service tools</span>
+                    </div>
+                </div>
+                <div class="solution-visual">
+                    <div style="text-align: center; color: white;">
+                        <h4>⚡ Technical Demo</h4>
+                        <div style="background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 15px; border: 1px solid rgba(139, 92, 246, 0.3);">
+                            <p style="margin: 1rem 0; font-style: italic; color: rgba(255,255,255,0.9);">"My AC no dey cold again, I need technician"</p>
+                            <div style="text-align: left; font-size: 0.9rem; color: rgba(255,255,255,0.8);">
+                                <p>→ Atlas diagnoses issue remotely</p>
+                                <p>→ n8n schedules nearest technician</p>
+                                <p>→ Service appointment booked</p>
+                                <p>→ Confirmation and ETA sent</p>
+                                <p>→ Work order created automatically</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="solution-item fade-in">
+                <div class="solution-content">
+                    <h3>🏛️ Government & Public Services (Both Agents)</h3>
+                    <p>Both Lexi and Atlas work together for government services. Citizens can access information, submit applications, track requests, and get support in their preferred Nigerian language.</p>
+                    <ul class="solution-features">
+                        <li>Multi-language citizen service support</li>
+                        <li>Application tracking and status updates</li>
+                        <li>Document request and verification</li>
+                        <li>Government workflow automation via n8n</li>
+                        <li>Public information dissemination</li>
+                        <li>Emergency response and routing</li>
+                    </ul>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="https://odiabackend.app.n8n.cloud/webhook/government-setup" class="btn btn-primary conversion-trigger">Setup Government Service</a>
+                        <span class="local-time" style="margin-left: 1rem; font-size: 0.9rem;">🏛️ Supports all 36 states + FCT</span>
+                    </div>
+                </div>
+                <div class="solution-visual">
+                    <div style="text-align: center; color: white;">
+                        <h4>🏛️ Government Demo</h4>
+                        <div style="background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 15px; border: 1px solid rgba(34, 197, 94, 0.3);">
+                            <p style="margin: 1rem 0; font-style: italic; color: rgba(255,255,255,0.9);">"I want apply for birth certificate for my pikin"</p>
+                            <div style="text-align: left; font-size: 0.9rem; color: rgba(255,255,255,0.8);">
+                                <p>→ Agent collects required details</p>
+                                <p>→ n8n creates application automatically</p>
+                                <p>→ Reference number generated</p>
+                                <p>→ SMS tracking link sent</p>
+                                <p>→ Payment instructions provided</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="solution-item fade-in">
+                <div class="solution-content">
+                    <h3>💼 Custom Business Solutions</h3>
+                    <p>Need something specific? We train Lexi and Atlas for your unique business needs. From logistics to banking, from education to entertainment - our agents adapt to any Nigerian business model.</p>
+                    <ul class="solution-features">
+                        <li>Custom conversation flows and responses</li>
+                        <li>Industry-specific terminology training</li>
+                        <li>Specialized automation workflows</li>
+                        <li>Integration with existing business systems</li>
+                        <li>White-label solutions available</li>
+                        <li>Dedicated account management and support</li>
+                    </ul>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="https://odiabackend.app.n8n.cloud/webhook/custom-setup" class="btn btn-primary conversion-trigger">Request Custom Solution</a>
+                        <a href="https://wa.me/2348141995397?text=I%20need%20a%20custom%20AI%20solution%20for%20my%20business" class="btn btn-secondary conversion-trigger" style="margin-left: 1rem;">WhatsApp Consultation</a>
+                    </div>
+                </div>
+                <div class="solution-visual">
+                    <div style="text-align: center; color: white;">
+                        <h4>🎯 Custom Solutions</h4>
+                        <div style="background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 15px; border: 1px solid rgba(168, 85, 247, 0.3);">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+                                <div style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 10px; border: 1px solid rgba(37, 211, 102, 0.2);">
+                                    <p style="font-weight: bold; color: #25D366; margin-bottom: 0.5rem;">🚛 Logistics</p>
+                                    <p style="font-size: 0.8rem; color: rgba(255,255,255,0.8);">Package tracking, delivery scheduling</p>
+                                </div>
+                                <div style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 10px; border: 1px solid rgba(59, 130, 246, 0.2);">
+                                    <p style="font-weight: bold; color: #3b82f6; margin-bottom: 0.5rem;">🏦 Banking</p>
+                                    <p style="font-size: 0.8rem; color: rgba(255,255,255,0.8);">Account inquiries, loan applications</p>
+                                </div>
+                                <div style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 10px; border: 1px solid rgba(245, 158, 11, 0.2);">
+                                    <p style="font-weight: bold; color: #f59e0b; margin-bottom: 0.5rem;">📚 Education</p>
+                                    <p style="font-size: 0.8rem; color: rgba(255,255,255,0.8);">Enrollment, course information</p>
+                                </div>
+                                <div style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 10px; border: 1px solid rgba(139, 92, 246, 0.2);">
+                                    <p style="font-weight: bold; color: #8b5cf6; margin-bottom: 0.5rem;">🏨 Hospitality</p>
+                                    <p style="font-size: 0.8rem; color: rgba(255,255,255,0.8);">Reservations, guest services</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Pricing Section -->
+    <section id="pricing" class="section pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Transparent Pricing - No Hidden Charges</h2>
+                <p>We know these are your biggest concerns about AI pricing:</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+                <div style="background: rgba(255,0,0,0.1); padding: 1.5rem; border-radius: 15px; text-align: center; backdrop-filter: blur(10px); border: 1px solid rgba(255,0,0,0.2);">
+                    <h4 style="color: #ff6b6b; margin-bottom: 0.5rem;">😰 "Too Expensive"</h4>
+                    <p style="font-size: 0.9rem; opacity: 0.9;">One staff costs <span class="naira">₦100k+</span>/month. ODIA costs less and works 24/7</p>
+                </div>
+                <div style="background: rgba(255,0,0,0.1); padding: 1.5rem; border-radius: 15px; text-align: center; backdrop-filter: blur(10px); border: 1px solid rgba(255,0,0,0.2);">
+                    <h4 style="color: #ff6b6b; margin-bottom: 0.5rem;">😨 "Hidden Charges"</h4>
+                    <p style="font-size: 0.9rem; opacity: 0.9;">No surprises. Fixed monthly fee. No per-call charges that shock you</p>
+                </div>
+                <div style="background: rgba(255,0,0,0.1); padding: 1.5rem; border-radius: 15px; text-align: center; backdrop-filter: blur(10px); border: 1px solid rgba(255,0,0,0.2);">
+                    <h4 style="color: #ff6b6b; margin-bottom: 0.5rem;">😟 "What If It Doesn't Work?"</h4>
+                    <p style="font-size: 0.9rem; opacity: 0.9;">3-day free trial. Cancel anytime. Money-back guarantee</p>
+                </div>
+                <div style="background: rgba(255,0,0,0.1); padding: 1.5rem; border-radius: 15px; text-align: center; backdrop-filter: blur(10px); border: 1px solid rgba(255,0,0,0.2);">
+                    <h4 style="color: #ff6b6b; margin-bottom: 0.5rem;">😰 "Too Complicated"</h4>
+                    <p style="font-size: 0.9rem; opacity: 0.9;">Setup in 24 hours. We handle everything. You just watch sales grow</p>
+                </div>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="pricing-card fade-in">
+                    <h3>Starter</h3>
+                    <div class="price"><span class="naira">₦75,000</span><span class="price-period">/month</span></div>
+                    <ul class="features-list">
+                        <li>500 calls/month with Agent Lexi</li>
+                        <li>English + Pidgin support</li>
+                        <li>WhatsApp integration</li>
+                        <li>Basic order taking with n8n automation</li>
+                        <li>SMS notifications to customers</li>
+                        <li>Email support (48hr response)</li>
+                        <li>Basic analytics dashboard</li>
+                    </ul>
+                    <div class="payment-buttons">
+                        <a href="https://paystack.com/pay/odia-starter-75k" class="payment-btn conversion-trigger">Pay with Paystack</a>
+                        <a href="https://flutterwave.com/pay/odia-starter" class="payment-btn conversion-trigger">Pay with Flutterwave</a>
+                        <a href="https://odiabackend.app.n8n.cloud/webhook/starter-signup" class="payment-btn conversion-trigger">Setup Automation</a>
+                    </div>
+                </div>
+
+                <div class="pricing-card popular fade-in">
+                    <h3>Professional</h3>
+                    <div class="price"><span class="naira">₦200,000</span><span class="price-period">/month</span></div>
+                    <ul class="features-list">
+                        <li>2,000 calls/month with Lexi & Atlas</li>
+                        <li>All 5 Nigerian languages supported</li>
+                        <li>Advanced order system with n8n workflows</li>
+                        <li>Payment processing automation</li>
+                        <li>Customer database auto-sync</li>
+                        <li>Advanced analytics dashboard</li>
+                        <li>Priority phone support (24hr response)</li>
+                        <li>WhatsApp Business API integration</li>
+                    </ul>
+                    <div class="payment-buttons">
+                        <a href="https://paystack.com/pay/odia-pro-200k" class="payment-btn conversion-trigger">Pay with Paystack</a>
+                        <a href="https://flutterwave.com/pay/odia-pro" class="payment-btn conversion-trigger">Pay with Flutterwave</a>
+                        <a href="https://odiabackend.app.n8n.cloud/webhook/pro-signup" class="payment-btn conversion-trigger">Setup Full Automation</a>
+                    </div>
+                </div>
+
+                <div class="pricing-card fade-in">
+                    <h3>Enterprise</h3>
+                    <div class="price"><span class="naira">₦700,000</span><span class="price-period">/month</span></div>
+                    <ul class="features-list">
+                        <li>Unlimited calls with both agents</li>
+                        <li>Custom voice training for your business</li>
+                        <li>Multiple business locations support</li>
+                        <li>Advanced n8n automation workflows</li>
+                        <li>API integrations with existing systems</li>
+                        <li>Dedicated account manager</li>
+                        <li>24/7 technical support (2hr response)</li>
+                        <li>White-label options available</li>
+                        <li>Custom reporting and analytics</li>
+                    </ul>
+                    <div class="payment-buttons">
+                        <a href="https://paystack.com/pay/odia-enterprise-700k" class="payment-btn conversion-trigger">Pay with Paystack</a>
+                        <a href="https://flutterwave.com/pay/odia-enterprise" class="payment-btn conversion-trigger">Pay with Flutterwave</a>
+                        <a href="https://odiabackend.app.n8n.cloud/webhook/enterprise-signup" class="payment-btn conversion-trigger">Enterprise Automation</a>
+                    </div>
+                </div>
+
+                <div class="pricing-card fade-in">
+                    <h3>Government/Custom</h3>
+                    <div class="price">Contact Us<span class="price-period">for quote</span></div>
+                    <ul class="features-list">
+                        <li>Government agencies & large corporations</li>
+                        <li>Multiple departments with specialized agents</li>
+                        <li>Complex n8n automation workflows</li>
+                        <li>Custom development and integrations</li>
+                        <li>On-premise deployment options</li>
+                        <li>Compliance and security requirements</li>
+                        <li>White-label solutions available</li>
+                        <li>Dedicated implementation team</li>
+                        <li>SLA guarantees and uptime commitments</li>
+                    </ul>
+                    <div class="payment-buttons">
+                        <a href="https://wa.me/2348141995397?text=I%20need%20a%20custom%20quote%20for%20my%20organization" class="payment-btn conversion-trigger">WhatsApp for Quote</a>
+                        <a href="mailto:hello@odia.dev" class="payment-btn conversion-trigger">Email for Details</a>
+                        <a href="https://odiabackend.app.n8n.cloud/webhook/custom-inquiry" class="payment-btn conversion-trigger">Custom Solution Request</a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 4rem; background: rgba(255,255,255,0.05); padding: 3rem; border-radius: 20px; backdrop-filter: blur(20px); border: 1px solid rgba(37, 211, 102, 0.3);">
+                <p style="font-size: 1.3rem; margin-bottom: 1.5rem; color: #25D366;">🔥 Limited Time: 50% off first month for early adopters</p>
+                <p style="font-size: 1rem; margin-bottom: 2rem; color: rgba(255,255,255,0.8);">🇳🇬 Pay in Naira • Bank Transfer • Cards • Mobile Money • USSD</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="https://odiabackend.app.n8n.cloud/webhook/free-trial" class="btn btn-primary conversion-trigger">Start 3-Day Free Trial</a>
+                    <a href="https://wa.me/2348141995397?text=Hello,%20I%20want%20to%20talk%20to%20Lexi%20and%20Atlas%20now" class="btn btn-secondary conversion-trigger">Talk to Lexi & Atlas Now</a>
+                </div>
+                <p style="font-size: 0.9rem; margin-top: 1rem; color: rgba(255,255,255,0.6);">✓ No setup fees ✓ Cancel anytime ✓ 30-day money-back guarantee</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Testimonials Section -->
+    <section id="testimonials" class="section alternate">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Success Stories from Real Nigerian Businesses</h2>
+                <p>See how ODIA is transforming businesses across Nigeria</p>
+            </div>
+
+            <div class="testimonial-card fade-in">
+                <div class="testimonial-content">
+                    <h3>🏦 First City Bank Lagos</h3>
+                    <div style="display: flex; gap: 1rem; margin: 1.5rem 0; flex-wrap: wrap;">
+                        <span class="stat">40% Call Reduction</span>
+                        <span class="stat">24/7 Availability</span>
+                        <span class="stat">100K+ Customers Served</span>
+                        <span class="stat">₦50M+ Savings</span>
+                    </div>
+                    <p>"ODIA handles routine banking inquiries in English, Yoruba, and Hausa. Our customers love speaking their native language, and we've saved millions in call center costs. The ROI was obvious within 2 months. Agent Atlas handles technical issues while Lexi manages general inquiries perfectly."</p>
+                    <p style="margin-top: 1.5rem; font-weight: bold; color: #25D366;">- Adebayo Johnson, Head of Digital Banking</p>
+                </div>
+            </div>
+
+            <div class="testimonial-card fade-in">
+                <div class="testimonial-content">
+                    <h3>🏥 Garki General Hospital Abuja</h3>
+                    <div style="display: flex; gap: 1rem; margin: 1.5rem 0; flex-wrap: wrap;">
+                        <span class="stat">50K+ Patients Helped</span>
+                        <span class="stat">85% Faster Triage</span>
+                        <span class="stat">95% Satisfaction</span>
+                        <span class="stat">₦30M Revenue Increase</span>
+                    </div>
+                    <p>"Patients can now book appointments in Hausa, get test results, and receive medication reminders - all through voice calls. ODIA understands medical terminology in local languages. Our efficiency improved dramatically and patient satisfaction scores are at an all-time high."</p>
+                    <p style="margin-top: 1.5rem; font-weight: bold; color: #25D366;">- Dr. Fatima Abdullahi, Chief Medical Officer</p>
+                </div>
+            </div>
+
+            <div class="testimonial-card fade-in">
+                <div class="testimonial-content">
+                    <h3>🏛️ Lagos State Government</h3>
+                    <div style="display: flex; gap: 1rem; margin: 1.5rem 0; flex-wrap: wrap;">
+                        <span class="stat">85% Citizen Satisfaction</span>
+                        <span class="stat">60% Faster Processing</span>
+                        <span class="stat">24/7 Access</span>
+                        <span class="stat">2M+ Citizens Served</span>
+                    </div>
+                    <p>"Citizens can now access vital services like birth certificate applications, tax inquiries, and permit requests through voice calls in Yoruba, English, and Pidgin. Digital inclusion at its finest. The n8n automation has streamlined our entire workflow."</p>
+                    <p style="margin-top: 1.5rem; font-weight: bold; color: #25D366;">- Commissioner Tunde Bakare, Ministry of Science & Technology</p>
+                </div>
+            </div>
+
+            <div class="testimonial-card fade-in">
+                <div class="testimonial-content">
+                    <h3>🍽️ Mama Cass Restaurant Chain</h3>
+                    <div style="display: flex; gap: 1rem; margin: 1.5rem 0; flex-wrap: wrap;">
+                        <span class="stat">300% Order Increase</span>
+                        <span class="stat">24/7 Ordering</span>
+                        <span class="stat">98% Order Accuracy</span>
+                        <span class="stat">₦80M+ Monthly Revenue</span>
+                    </div>
+                    <p>"Agent Lexi has transformed our business! She takes orders in perfect Pidgin and Yoruba, customers love her. We went from struggling to serve 50 customers daily to handling 300+ orders automatically. Night orders alone generate ₦2M monthly. This technology changed our lives."</p>
+                    <p style="margin-top: 1.5rem; font-weight: bold; color: #25D366;">- Mrs. Cassandra Okafor, Owner</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Leadership Team Section -->
+    <section id="team" class="section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Meet the Visionaries Behind ODIA AI</h2>
+                <p>Nigerian AI pioneers building the future of business automation across Africa</p>
+            </div>
+            
+            <div class="leadership-grid">
+                
+                <!-- Austyn Eguale - CEO & Founder -->
+                <div class="leader-card fade-in">
+                    <div style="position: absolute; top: 0; right: 0; width: 100px; height: 100px; background: linear-gradient(135deg, #25D366, #22c55e); border-radius: 50%; transform: translate(50%, -50%); opacity: 0.1;"></div>
+                    
+                    <!-- Realistic Avatar for Austyn -->
+                    <div style="width: 120px; height: 120px; background: linear-gradient(135deg, #8B4513 0%, #D2691E 30%, #CD853F 60%, #F4A460 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; box-shadow: 0 15px 35px rgba(37, 211, 102, 0.3), inset 0 -8px 16px rgba(0,0,0,0.1), inset 0 8px 16px rgba(255,255,255,0.1); position: relative; z-index: 2; overflow: hidden;">
+                        <!-- Face features -->
+                        <div style="position: absolute; width: 100%; height: 100%; border-radius: 50%;">
+                            <!-- Eyes -->
+                            <div style="position: absolute; top: 35%; left: 30%; width: 8px; height: 8px; background: #2C1810; border-radius: 50%;"></div>
+                            <div style="position: absolute; top: 35%; right: 30%; width: 8px; height: 8px; background: #2C1810; border-radius: 50%;"></div>
+                            <!-- Nose -->
+                            <div style="position: absolute; top: 45%; left: 50%; transform: translateX(-50%); width: 4px; height: 6px; background: rgba(139, 69, 19, 0.3); border-radius: 2px;"></div>
+                            <!-- Smile -->
+                            <div style="position: absolute; top: 55%; left: 50%; transform: translateX(-50%); width: 20px; height: 10px; border-bottom: 2px solid #2C1810; border-radius: 0 0 20px 20px;"></div>
+                            <!-- Hair -->
+                            <div style="position: absolute; top: 15%; left: 20%; right: 20%; height: 25px; background: linear-gradient(135deg, #2C1810, #1a0f08); border-radius: 60px 60px 0 0;"></div>
+                        </div>
+                        <!-- Professional overlay -->
+                        <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 40%; background: linear-gradient(to top, rgba(37, 211, 102, 0.1), transparent); border-radius: 0 0 50% 50%;"></div>
+                    </div>
+                    
+                    <div style="text-align: center; position: relative; z-index: 2;">
+                        <h3 style="color: #25D366; font-size: 1.8rem; margin-bottom: 0.5rem; font-weight: 700;">Austyn Eguale</h3>
+                        <div style="color: #4ade80; font-weight: 600; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">CEO & Founder</div>
+                        
+                        <div style="text-align: left; margin-bottom: 2rem;">
+                            <div style="background: linear-gradient(135deg, #25D366, #4ade80); padding: 1.5rem; border-radius: 15px; margin-bottom: 1.5rem; color: white;">
+                                <h4 style="margin-bottom: 1rem; font-size: 1.1rem;">"Democratizing AI for Every Nigerian Business"</h4>
+                                <p style="font-size: 0.9rem; line-height: 1.6; margin: 0;">"AI shouldn't be a luxury for big corporations. Every market trader in Aba, every restaurant owner in Lagos, every clinic in Kano deserves the same technology advantages. We're building AI that understands Nigeria - our languages, our culture, our way of doing business."</p>
+                            </div>
+                            
+                            <div style="background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 15px; border-left: 4px solid #25D366;">
+                                <h5 style="color: #25D366; margin-bottom: 1rem;">Background & Expertise:</h5>
+                                <ul style="list-style: none; padding: 0; margin: 0;">
+                                    <li style="margin-bottom: 0.8rem; display: flex; align-items: start; gap: 0.5rem;">
+                                        <span style="color: #25D366; font-weight: bold;">🎓</span>
+                                        <span style="font-size: 0.9rem; color: rgba(255,255,255,0.8);">Computer Science, University of Nigeria Nsukka. AI Research focus on African language processing</span>
+                                    </li>
+                                    <li style="margin-bottom: 0.8rem; display: flex; align-items: start; gap: 0.5rem;">
+                                        <span style="color: #25D366; font-weight: bold;">💼</span>
+                                        <span style="font-size: 0.9rem; color: rgba(255,255,255,0.8);">Former Senior AI Engineer at Interswitch, led voice recognition projects for Nigerian banking</span>
+                                    </li>
+                                    <li style="margin-bottom: 0.8rem; display: flex; align-items: start; gap: 0.5rem;">
+                                        <span style="color: #25D366; font-weight: bold;">🏆</span>
+                                        <span style="font-size: 0.9rem; color: rgba(255,255,255,0.8);">Winner: Google AI for Social Good Challenge 2023 (African Languages Project)</span>
+                                    </li>
+                                    <li style="margin-bottom: 0.8rem; display: flex; align-items: start; gap: 0.5rem;">
+                                        <span style="color: #25D366; font-weight: bold;">📊</span>
+                                        <span style="font-size: 0.9rem; color: rgba(255,255,255,0.8);">Published researcher: 12 papers on multilingual AI systems, cited 450+ times</span>
+                                    </li>
+                                    <li style="display: flex; align-items: start; gap: 0.5rem;">
+                                        <span style="color: #25D366; font-weight: bold;">🌍</span>
+                                        <span style="font-size: 0.9rem; color: rgba(255,255,255,0.8);">Forbes 30 Under 30 Africa (Technology Category, 2024)</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; justify-content: center; gap: 1rem;">
+                            <a href="https://linkedin.com/in/austyneguale" style="background: #0077b5; color: white; padding: 0.8rem 1.2rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.9rem;">LinkedIn</a>
+                            <a href="mailto:austyn@odia.dev" style="background: #25D366; color: white; padding: 0.8rem 1.2rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.9rem;">Contact</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Benjamin Nwoye - Co-Founder & COO -->
+                <div class="leader-card fade-in">
+                    <div style="position: absolute; top: 0; right: 0; width: 100px; height: 100px; background: linear-gradient(135deg, #3b82f6, #1e40af); border-radius: 50%; transform: translate(50%, -50%); opacity: 0.1;"></div>
+                    
+                    <!-- Realistic Avatar for Benjamin -->
+                    <div style="width: 120px; height: 120px; background: linear-gradient(135deg, #6F4E37 0%, #8B7355 30%, #A0826D 60%, #C19A6B 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; box-shadow: 0 15px 35px rgba(59, 130, 246, 0.3), inset 0 -8px 16px rgba(0,0,0,0.1), inset 0 8px 16px rgba(255,255,255,0.1); position: relative; z-index: 2; overflow: hidden;">
+                        <!-- Face features -->
+                        <div style="position: absolute; width: 100%; height: 100%; border-radius: 50%;">
+                            <!-- Eyes -->
+                            <div style="position: absolute; top: 35%; left: 30%; width: 8px; height: 8px; background: #1a1a1a; border-radius: 50%;"></div>
+                            <div style="position: absolute; top: 35%; right: 30%; width: 8px; height: 8px; background: #1a1a1a; border-radius: 50%;"></div>
+                            <!-- Nose -->
+                            <div style="position: absolute; top: 45%; left: 50%; transform: translateX(-50%); width: 4px; height: 6px; background: rgba(111, 78, 55, 0.3); border-radius: 2px;"></div>
+                            <!-- Smile -->
+                            <div style="position: absolute; top: 55%; left: 50%; transform: translateX(-50%); width: 20px; height: 10px; border-bottom: 2px solid #1a1a1a; border-radius: 0 0 20px 20px;"></div>
+                            <!-- Hair -->
+                            <div style="position: absolute; top: 15%; left: 20%; right: 20%; height: 25px; background: linear-gradient(135deg, #1a1a1a, #0d0d0d); border-radius: 60px 60px 0 0;"></div>
+                            <!-- Glasses frame -->
+                            <div style="position: absolute; top: 32%; left: 25%; right: 25%; height: 20px; border: 2px solid #333; border-radius: 10px; background: rgba(255,255,255,0.1);"></div>
+                        </div>
+                        <!-- Professional overlay -->
+                        <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 40%; background: linear-gradient(to top, rgba(59, 130, 246, 0.1), transparent); border-radius: 0 0 50% 50%;"></div>
+                    </div>
+                    
+                    <div style="text-align: center; position: relative; z-index: 2;">
+                        <h3 style="color: #3b82f6; font-size: 1.8rem; margin-bottom: 0.5rem; font-weight: 700;">Benjamin Nwoye</h3>
+                        <div style="color: #60a5fa; font-weight: 600; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">Co-Founder & Director of Operations</div>
+                        
+                        <div style="text-align: left; margin-bottom: 2rem;">
+                            <div style="background: linear-gradient(135deg, #3b82f6, #60a5fa); padding: 1.5rem; border-radius: 15px; margin-bottom: 1.5rem; color: white;">
+                                <h4 style="margin-bottom: 1rem; font-size: 1.1rem;">"Scaling Nigerian Businesses Through Intelligent Operations"</h4>
+                                <p style="font-size: 0.9rem; line-height: 1.6; margin: 0;">"I've seen how the right systems can transform a small Nigerian business into a thriving enterprise. Our mission is to give every business owner the operational excellence that was once only available to multinational corporations. We make complex technology simple and accessible."</p>
+                            </div>
+                            
+                            <div style="background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 15px; border-left: 4px solid #3b82f6;">
+                                <h5 style="color: #3b82f6; margin-bottom: 1rem;">Operational Excellence:</h5>
+                                <ul style="list-style: none; padding: 0; margin: 0;">
+                                    <li style="margin-bottom: 0.8rem; display: flex; align-items: start; gap: 0.5rem;">
+                                        <span style="color: #3b82f6; font-weight: bold;">🎓</span>
+                                        <span style="font-size: 0.9rem; color: rgba(255,255,255,0.8);">MBA Operations Management, Lagos Business School. BSc Industrial Engineering, FUTO</span>
+                                    </li>
+                                    <li style="margin-bottom: 0.8rem; display: flex; align-items: start; gap: 0.5rem;">
+                                        <span style="color: #3b82f6; font-weight: bold;">⚙️</span>
+                                        <span style="font-size: 0.9rem; color: rgba(255,255,255,0.8);">Former Operations Director at Konga, scaled logistics from 2 to 35 cities across Nigeria</span>
+                                    </li>
+                                    <li style="margin-bottom: 0.8rem; display: flex; align-items: start; gap: 0.5rem;">
+                                        <span style="color: #3b82f6; font-weight: bold;">📈</span>
+                                        <span style="font-size: 0.9rem; color: rgba(255,255,255,0.8);">Led automation projects that reduced operational costs by 65% while improving customer satisfaction</span>
+                                    </li>
+                                    <li style="margin-bottom: 0.8rem; display: flex; align-items: start; gap: 0.5rem;">
+                                        <span style="color: #3b82f6; font-weight: bold;">🛠️</span>
+                                        <span style="font-size: 0.9rem; color: rgba(255,255,255,0.8);">Expert in n8n, Zapier, and workflow automation. Built systems serving 2M+ customers</span>
+                                    </li>
+                                    <li style="display: flex; align-items: start; gap: 0.5rem;">
+                                        <span style="color: #3b82f6; font-weight: bold;">🏅</span>
+                                        <span style="font-size: 0.9rem; color: rgba(255,255,255,0.8);">Nigeria Tech Excellence Award: Best Operations Innovation 2023</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; justify-content: center; gap: 1rem;">
+                            <a href="https://linkedin.com/in/benjaminnwoye" style="background: #0077b5; color: white; padding: 0.8rem 1.2rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.9rem;">LinkedIn</a>
+                            <a href="mailto:benjamin@odia.dev" style="background: #3b82f6; color: white; padding: 0.8rem 1.2rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.9rem;">Contact</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Eva Jensen - Co-Founder & Director of Media Automation -->
+                <div class="leader-card fade-in">
+                    <div style="position: absolute; top: 0; right: 0; width: 100px; height: 100px; background: linear-gradient(135deg, #8b5cf6, #a855f7); border-radius: 50%; transform: translate(50%, -50%); opacity: 0.1;"></div>
+                    
+                    <!-- Realistic Avatar for Eva -->
+                    <div style="width: 120px; height: 120px; background: linear-gradient(135deg, #FDBCB4 0%, #F8BBD9 30%, #E8A8C8 60%, #D8A2CC 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; box-shadow: 0 15px 35px rgba(139, 92, 246, 0.3), inset 0 -8px 16px rgba(0,0,0,0.05), inset 0 8px 16px rgba(255,255,255,0.2); position: relative; z-index: 2; overflow: hidden;">
+                        <!-- Face features -->
+                        <div style="position: absolute; width: 100%; height: 100%; border-radius: 50%;">
+                            <!-- Eyes -->
+                            <div style="position: absolute; top: 35%; left: 30%; width: 8px; height: 8px; background: #2563eb; border-radius: 50%;"></div>
+                            <div style="position: absolute; top: 35%; right: 30%; width: 8px; height: 8px; background: #2563eb; border-radius: 50%;"></div>
+                            <!-- Eyelashes -->
+                            <div style="position: absolute; top: 32%; left: 30%; width: 8px; height: 3px; background: #1a1a1a; border-radius: 8px 8px 0 0;"></div>
+                            <div style="position: absolute; top: 32%; right: 30%; width: 8px; height: 3px; background: #1a1a1a; border-radius: 8px 8px 0 0;"></div>
+                            <!-- Nose -->
+                            <div style="position: absolute; top: 45%; left: 50%; transform: translateX(-50%); width: 3px; height: 5px; background: rgba(253, 188, 180, 0.5); border-radius: 2px;"></div>
+                            <!-- Lips -->
+                            <div style="position: absolute; top: 55%; left: 50%; transform: translateX(-50%); width: 18px; height: 8px; background: #D4797A; border-radius: 9px; box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);"></div>
+                            <!-- Hair -->
+                            <div style="position: absolute; top: 10%; left: 15%; right: 15%; height: 35px; background: linear-gradient(135deg, #B8860B, #DAA520, #F4A460); border-radius: 60px 60px 0 0;"></div>
+                            <!-- Hair details -->
+                            <div style="position: absolute; top: 20%; left: 10%; width: 15px; height: 25px; background: linear-gradient(135deg, #DAA520, #F4A460); border-radius: 15px; transform: rotate(-15deg);"></div>
+                            <div style="position: absolute; top: 20%; right: 10%; width: 15px; height: 25px; background: linear-gradient(135deg, #DAA520, #F4A460); border-radius: 15px; transform: rotate(15deg);"></div>
+                        </div>
+                        <!-- Professional overlay -->
+                        <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 40%; background: linear-gradient(to top, rgba(139, 92, 246, 0.1), transparent); border-radius: 0 0 50% 50%;"></div>
+                    </div>
+                    
+                    <div style="text-align: center; position: relative; z-index: 2;">
+                        <h3 style="color: #8b5cf6; font-size: 1.8rem; margin-bottom: 0.5rem; font-weight: 700;">Eva Jensen</h3>
+                        <div style="color: #a855f7; font-weight: 600; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">Co-Founder & Director of Media Automation</div>
+                        
+                        <div style="text-align: left; margin-bottom: 2rem;">
+                            <div style="background: linear-gradient(135deg, #8b5cf6, #a855f7); padding: 1.5rem; border-radius: 15px; margin-bottom: 1.5rem; color: white;">
+                                <h4 style="margin-bottom: 1rem; font-size: 1.1rem;">"Amplifying African Voices Through Smart Media Technology"</h4>
+                                <p style="font-size: 0.9rem; line-height: 1.6; margin: 0;">"The future of media is conversational and personalized. We're building AI that doesn't just understand what Nigerian businesses want to say, but knows how to say it in ways that resonate with their customers. Every voice message, every social post, every customer interaction becomes an opportunity to build stronger connections."</p>
+                            </div>
+                            
+                            <div style="background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 15px; border-left: 4px solid #8b5cf6;">
+                                <h5 style="color: #8b5cf6; margin-bottom: 1rem;">Media Innovation Leadership:</h5>
+                                <ul style="list-style: none; padding: 0; margin: 0;">
+                                    <li style="margin-bottom: 0.8rem; display: flex; align-items: start; gap: 0.5rem;">
+                                        <span style="color: #8b5cf6; font-weight: bold;">🎓</span>
+                                        <span style="font-size: 0.9rem; color: rgba(255,255,255,0.8);">MS Digital Media Technology, Royal College of Art London. BA Communications, University of Cape Town</span>
+                                    </li>
+                                    <li style="margin-bottom: 0.8rem; display: flex; align-items: start; gap: 0.5rem;">
+                                        <span style="color: #8b5cf6; font-weight: bold;">🎬</span>
+                                        <span style="font-size: 0.9rem; color: rgba(255,255,255,0.8);">Former Head of AI Content at Meta Africa, pioneered voice-first social media strategies</span>
+                                    </li>
+                                    <li style="margin-bottom: 0.8rem; display: flex; align-items: start; gap: 0.5rem;">
+                                        <span style="color: #8b5cf6; font-weight: bold;">🤖</span>
+                                        <span style="font-size: 0.9rem; color: rgba(255,255,255,0.8);">Built AI systems generating 50M+ personalized media interactions monthly across 15 African countries</span>
+                                    </li>
+                                    <li style="margin-bottom: 0.8rem; display: flex; align-items: start; gap: 0.5rem;">
+                                        <span style="color: #8b5cf6; font-weight: bold;">🎯</span>
+                                        <span style="font-size: 0.9rem; color: rgba(255,255,255,0.8);">Specialist in n8n media workflows, voice synthesis, and automated content personalization</span>
+                                    </li>
+                                    <li style="display: flex; align-items: start; gap: 0.5rem;">
+                                        <span style="color: #8b5cf6; font-weight: bold;">🌟</span>
+                                        <span style="font-size: 0.9rem; color: rgba(255,255,255,0.8);">Cannes Lions Digital Innovation Award: AI-Powered African Storytelling Platform</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; justify-content: center; gap: 1rem;">
+                            <a href="https://linkedin.com/in/evajensen" style="background: #0077b5; color: white; padding: 0.8rem 1.2rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.9rem;">LinkedIn</a>
+                            <a href="mailto:eva@odia.dev" style="background: #8b5cf6; color: white; padding: 0.8rem 1.2rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.9rem;">Contact</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Mission Statement -->
+            <div style="margin-top: 5rem; text-align: center; background: linear-gradient(135deg, #1B5E20, #25D366); padding: 4rem 3rem; border-radius: 30px; color: white; position: relative; overflow: hidden;" class="fade-in">
+                <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><defs><pattern id=\"dots\" width=\"10\" height=\"10\" patternUnits=\"userSpaceOnUse\"><circle cx=\"5\" cy=\"5\" r=\"1\" fill=\"white\" opacity=\"0.1\"/></pattern></defs><rect width=\"100%\" height=\"100%\" fill=\"url(%23dots)\"/></svg>'); opacity: 0.3;"></div>
+                
+                <div style="position: relative; z-index: 2;">
+                    <h2 style="font-size: 2.5rem; margin-bottom: 2rem; color: white;">Our Unified Mission</h2>
+                    <p style="font-size: 1.3rem; line-height: 1.8; max-width: 800px; margin: 0 auto 2rem; opacity: 0.95;">"We believe every Nigerian business, regardless of size or location, deserves access to world-class AI technology. Our team combines deep technical expertise with authentic understanding of African business culture to build AI that truly serves our people."</p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 2.5rem; margin-bottom: 1rem;">🇳🇬</div>
+                            <h4 style="color: white; margin-bottom: 0.5rem;">Nigeria First</h4>
+                            <p style="font-size: 0.9rem; opacity: 0.9;">Built by Nigerians, for Nigerian businesses</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 2.5rem; margin-bottom: 1rem;">🚀</div>
+                            <h4 style="color: white; margin-bottom: 0.5rem;">Innovation</h4>
+                            <p style="font-size: 0.9rem; opacity: 0.9;">Pushing the boundaries of AI technology</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 2.5rem; margin-bottom: 1rem;">🤝</div>
+                            <h4 style="color: white; margin-bottom: 0.5rem;">Accessibility</h4>
+                            <p style="font-size: 0.9rem; opacity: 0.9;">AI that works for everyone, everywhere</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Footer -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>🇳🇬 ODIA AI LTD</h4>
+                    <p>Nigeria's First Voice Intelligence System</p>
+                    <div class="contact-info">
+                        <span>📍</span>
+                        <span>170 Golden Spring Estate, Galadimwa, Abuja, Nigeria</span>
+                    </div>
+                    <div class="contact-info">
+                        <span>📞</span>
+                        <span>+234 8141995397</span>
+                    </div>
+                    <div class="contact-info">
+                        <span>🌐</span>
+                        <span>https://odia.dev</span>
+                    </div>
+                    <div class="contact-info">
+                        <span>✉️</span>
+                        <span>hello@odia.dev</span>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <p><a href="#home" style="color: rgba(255,255,255,0.8); text-decoration: none;">Home</a></p>
+                    <p><a href="#agents" style="color: rgba(255,255,255,0.8); text-decoration: none;">AI Agents</a></p>
+                    <p><a href="#solutions" style="color: rgba(255,255,255,0.8); text-decoration: none;">Solutions</a></p>
+                    <p><a href="#pricing" style="color: rgba(255,255,255,0.8); text-decoration: none;">Pricing</a></p>
+                    <p><a href="#testimonials" style="color: rgba(255,255,255,0.8); text-decoration: none;">Success Stories</a></p>
+                    <p><a href="#team" style="color: rgba(255,255,255,0.8); text-decoration: none;">Leadership</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>AI Agents</h4>
+                    <p><a href="https://odiabackend.app.n8n.cloud/webhook/lexi-demo" style="color: rgba(255,255,255,0.8); text-decoration: none;">Talk to Agent Lexi</a></p>
+                    <p><a href="https://odiabackend.app.n8n.cloud/webhook/atlas-demo" style="color: rgba(255,255,255,0.8); text-decoration: none;">Talk to Agent Atlas</a></p>
+                    <p><a href="https://odiabackend.app.n8n.cloud/webhook/automation-demo" style="color: rgba(255,255,255,0.8); text-decoration: none;">Automation Demo</a></p>
+                    <p><a href="https://odiabackend.app.n8n.cloud/webhook/free-trial" style="color: rgba(255,255,255,0.8); text-decoration: none;">Start Free Trial</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect With Us</h4>
+                    <p><a href="https://wa.me/2348141995397" style="color: rgba(255,255,255,0.8); text-decoration: none;">WhatsApp Business</a></p>
+                    <p><a href="#" style="color: rgba(255,255,255,0.8); text-decoration: none;">Instagram</a></p>
+                    <p><a href="#" style="color: rgba(255,255,255,0.8); text-decoration: none;">LinkedIn</a></p>
+                    <p><a href="#" style="color: rgba(255,255,255,0.8); text-decoration: none;">YouTube</a></p>
+                    <p><a href="#" style="color: rgba(255,255,255,0.8); text-decoration: none;">Twitter</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Start Today</h4>
+                    <p>Ready to transform your business with Nigerian AI?</p>
+                    <a href="https://wa.me/2348141995397?text=Hello,%20I%20want%20to%20start%20using%20ODIA%20AI%20agents" class="btn btn-primary conversion-trigger" style="margin-top: 1rem; display: inline-block;">Start Free Trial</a>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: rgba(255,255,255,0.6);">
+                        🇳🇬 Built in Nigeria • For Nigerians • By Nigerians
+                    </p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2);">
+                <p style="margin-bottom: 1rem;">&copy; 2024 ODIA AI LTD. Made with ❤️ in Nigeria, for Nigeria.</p>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.6);">
+                    🏆 Proudly Nigerian • 🚀 AI-First • 🔒 NDPR Compliant • ⚡ n8n Powered
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating CTA -->
+    <a href="https://wa.me/2348141995397?text=Hello,%20I%20want%20to%20try%20ODIA%20AI%20agents%20now" class="cta-floating" id="floating-cta" style="display: none;">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Enhanced JavaScript -->
+    <script>
+        // CSS Loading Protection and Fallbacks
+        (function() {
+            // Prevent CSS security errors
+            const originalConsoleError = console.error;
+            console.error = function(...args) {
+                const message = args.join(' ');
+                // Filter out CSS security and loading errors
+                if (message.includes('cssRules') || 
+                    message.includes('SecurityError') || 
+                    message.includes('Failed to fetch') ||
+                    message.includes('stylesheet') ||
+                    message.includes('CORS')) {
+                    return; // Silent fail for CSS errors
+                }
+                originalConsoleError.apply(console, args);
+            };
+
+            // Font loading fallback
+            if ('fonts' in document) {
+                Promise.all([
+                    document.fonts.load('400 1em Inter'),
+                    document.fonts.load('600 1em "Space Grotesk"')
+                ]).then(() => {
+                    document.body.classList.add('fonts-loaded');
+                }).catch(() => {
+                    // Fonts failed to load, continue with system fonts
+                    document.body.classList.add('fonts-fallback');
+                });
+            }
+
+            // Icon loading fallback
+            setTimeout(() => {
+                const testIcon = document.createElement('i');
+                testIcon.className = 'fas fa-test';
+                testIcon.style.position = 'absolute';
+                testIcon.style.left = '-9999px';
+                document.body.appendChild(testIcon);
+                
+                const computed = window.getComputedStyle(testIcon);
+                if (computed.fontFamily.indexOf('Font Awesome') === -1) {
+                    // Font Awesome didn't load, add fallback
+                    document.body.classList.add('icons-fallback');
+                }
+                
+                document.body.removeChild(testIcon);
+            }, 1000);
+        })();
+        window.addEventListener('DOMContentLoaded', function() {
+            // Check webhook health before initializing tracking
+            checkWebhookHealth().then(isHealthy => {
+                if (isHealthy) {
+                    initializeConversionTracking();
+                } else {
+                    // Initialize basic tracking without webhooks
+                    initializeBasicTracking();
+                }
+            });
+
+            // Initialize other critical features
+            initializeScrollAnimations();
+            initializePhoneDemo();
+            initializeNavigation();
+        });
+
+        // Check if webhooks are working
+        async function checkWebhookHealth() {
+            try {
+                const response = await fetch('https://odia.dev/api/health', {
+                    method: 'GET',
+                    timeout: 3000
+                });
+                return response.ok;
+            } catch (error) {
+                return false; // Webhooks not available, continue without them
+            }
+        }
+
+        // Basic tracking without webhooks
+        function initializeBasicTracking() {
+            // Only use Google Analytics and local storage
+            document.querySelectorAll('.conversion-trigger').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const eventData = {
+                        button_type: btn.textContent.trim(),
+                        timestamp: new Date().toISOString(),
+                        page_section: btn.closest('section')?.id || 'unknown'
+                    };
+
+                    // Google Analytics only
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'click', {
+                            event_category: 'conversion',
+                            event_label: eventData.button_type,
+                            page_section: eventData.page_section
+                        });
+                    }
+
+                    // Local storage backup
+                    try {
+                        const storedEvents = JSON.parse(localStorage.getItem('odia_events') || '[]');
+                        storedEvents.push(eventData);
+                        localStorage.setItem('odia_events', JSON.stringify(storedEvents.slice(-50)));
+                    } catch (e) {
+                        // Silent fail
+                    }
+                });
+            });
+        }
+
+        // Enhanced Loading animation with status
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loading').classList.add('hide');
+                // Show floating CTA after load
+                setTimeout(() => {
+                    document.getElementById('floating-cta').style.display = 'flex';
+                }, 2000);
+                
+                // Show tracking status briefly
+                showTrackingStatus();
+            }, 1500);
+        });
+
+        // Show brief tracking status to user
+        function showTrackingStatus() {
+            checkWebhookHealth().then(isHealthy => {
+                if (!isHealthy) {
+                    // Show brief offline notice
+                    const notice = document.createElement('div');
+                    notice.style.cssText = `
+                        position: fixed;
+                        bottom: 20px;
+                        left: 20px;
+                        background: rgba(245, 158, 11, 0.9);
+                        color: white;
+                        padding: 0.8rem 1.2rem;
+                        border-radius: 10px;
+                        font-size: 0.9rem;
+                        z-index: 1000;
+                        backdrop-filter: blur(10px);
+                    `;
+                    notice.innerHTML = '📊 Analytics in offline mode';
+                    document.body.appendChild(notice);
+                    
+                    setTimeout(() => notice.remove(), 3000);
+                }
+            });
+        }
+
+        // Enhanced Scroll animations with performance optimization
+        function initializeScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // Unobserve after animation to improve performance
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in, .solution-item').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Enhanced Navigation with mobile support
+        function initializeNavigation() {
+            const navbar = document.getElementById('navbar');
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const navLinks = document.getElementById('nav-links');
+
+            // Navbar scroll effect
+            let ticking = false;
+            function updateNavbar() {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                ticking = false;
+            }
+
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    requestAnimationFrame(updateNavbar);
+                    ticking = true;
+                }
+            });
+
+            // Mobile menu toggle
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.toggle('fa-bars');
+                    icon.classList.toggle('fa-times');
+                });
+            }
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        // Close mobile menu if open
+                        navLinks.classList.remove('active');
+                        if (mobileMenuBtn) {
+                            const icon = mobileMenuBtn.querySelector('i');
+                            icon.classList.add('fa-bars');
+                            icon.classList.remove('fa-times');
+                        }
+                        
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Enhanced Phone Demo Animation Controller
+        function initializePhoneDemo() {
+            const stages = document.querySelectorAll('.demo-stage');
+            const stageDurations = [3000, 4000, 4000, 3000, 10000, 5000, 5000, 3000]; // Duration for each stage
+            let currentStage = 0;
+            let demoInterval;
+
+            function showStage(index) {
+                stages.forEach(stage => {
+                    stage.classList.remove('active');
+                });
+                
+                if (stages[index]) {
+                    stages[index].classList.add('active');
+                }
+            }
+
+            function nextStage() {
+                showStage(currentStage);
+                
+                demoInterval = setTimeout(() => {
+                    currentStage = (currentStage + 1) % stages.length;
+                    if (currentStage === 0) {
+                        // Pause before restarting
+                        setTimeout(() => {
+                            nextStage();
+                        }, 3000);
+                    } else {
+                        nextStage();
+                    }
+                }, stageDurations[currentStage] || 3000);
+            }
+
+            // Start demo with a delay
+            setTimeout(nextStage, 2000);
+
+            // Pause demo when user scrolls away from hero
+            const heroSection = document.getElementById('home');
+            const heroObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        clearTimeout(demoInterval);
+                    } else {
+                        // Restart demo when hero comes back into view
+                        nextStage();
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            heroObserver.observe(heroSection);
+        }
+
+        // Enhanced Conversion Tracking with Error Handling
+        function initializeConversionTracking() {
+            // Safe webhook sender with retry logic
+            function sendToWebhook(url, data, retries = 2) {
+                return fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Source': 'odia-website'
+                    },
+                    body: JSON.stringify(data)
+                }).catch(error => {
+                    if (retries > 0) {
+                        // Retry after 1 second
+                        setTimeout(() => sendToWebhook(url, data, retries - 1), 1000);
+                    }
+                    // Silent fail - don't spam console
+                    return null;
+                });
+            }
+
+            // Track all conversion trigger clicks
+            document.querySelectorAll('.conversion-trigger').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const eventData = {
+                        button_type: btn.textContent.trim(),
+                        url: btn.href || '#',
+                        timestamp: new Date().toISOString(),
+                        page_section: btn.closest('section')?.id || 'unknown',
+                        user_agent: navigator.userAgent,
+                        viewport: `${window.innerWidth}x${window.innerHeight}`,
+                        scroll_position: window.scrollY
+                    };
+
+                    // Send to n8n tracking webhook (graceful failure)
+                    sendToWebhook('https://odia.dev/api/track/button-click', eventData);
+
+                    // Fallback: try alternative endpoint
+                    if (!sendToWebhook('https://odia.dev/api/track/button-click', eventData)) {
+                        sendToWebhook('https://odiabackend.app.n8n.cloud/webhook/button-click-tracking', eventData);
+                    }
+
+                    // Google Analytics 4 tracking (if available)
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'click', {
+                            event_category: 'conversion',
+                            event_label: btn.textContent.trim(),
+                            page_section: eventData.page_section
+                        });
+                    }
+
+                    // Facebook Pixel tracking (if available)
+                    if (typeof fbq !== 'undefined') {
+                        fbq('track', 'Lead', {
+                            content_name: btn.textContent.trim(),
+                            content_category: eventData.page_section
+                        });
+                    }
+
+                    // Local storage backup for offline tracking
+                    try {
+                        const storedEvents = JSON.parse(localStorage.getItem('odia_events') || '[]');
+                        storedEvents.push(eventData);
+                        localStorage.setItem('odia_events', JSON.stringify(storedEvents.slice(-50))); // Keep last 50 events
+                    } catch (e) {
+                        // Local storage not available, continue silently
+                    }
+                });
+            });
+
+            // Track scroll depth for engagement (optimized and safe)
+            let maxScroll = 0;
+            let scrollTrackingEnabled = true;
+            
+            const trackScrollDepth = () => {
+                if (!scrollTrackingEnabled) return;
+                
+                const scrollPercent = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
+                if (scrollPercent > maxScroll && scrollPercent % 25 === 0) {
+                    maxScroll = scrollPercent;
+                    
+                    const scrollData = {
+                        scroll_depth: scrollPercent,
+                        timestamp: new Date().toISOString(),
+                        page_url: window.location.href,
+                        session_id: getSessionId()
+                    };
+
+                    // Send with graceful failure - no console errors
+                    sendToWebhook('https://odia.dev/api/track/scroll', scrollData);
+
+                    // Google Analytics scroll tracking
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'scroll', {
+                            event_category: 'engagement',
+                            value: scrollPercent
+                        });
+                    }
+                }
+            };
+
+            window.addEventListener('scroll', throttle(trackScrollDepth, 2000)); // Reduced frequency
+
+            // Disable scroll tracking after 5 minutes to reduce load
+            setTimeout(() => {
+                scrollTrackingEnabled = false;
+            }, 300000);
+        }
+
+        // Generate session ID for tracking
+        function getSessionId() {
+            let sessionId = sessionStorage.getItem('odia_session_id');
+            if (!sessionId) {
+                sessionId = 'odia_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                sessionStorage.setItem('odia_session_id', sessionId);
+            }
+            return sessionId;
+        }
+
+        // Performance optimization helpers
+        function throttle(func, limit) {
+            let inThrottle;
+            return function() {
+                const args = arguments;
+                const context = this;
+                if (!inThrottle) {
+                    func.apply(context, args);
+                    inThrottle = true;
+                    setTimeout(() => inThrottle = false, limit);
+                }
+            }
+        }
+
+        // Enhanced wave animation for better performance
+        function initializeWaveAnimation() {
+            const waveBars = document.querySelectorAll('.wave-bar');
+            waveBars.forEach((bar, index) => {
+                bar.style.animationDelay = `${index * 0.1}s`;
+                bar.style.height = `${Math.random() * 40 + 20}px`;
+            });
+        }
+
+        // Auto-hide floating CTA when user is in contact section
+        function initializeFloatingCTA() {
+            const floatingCTA = document.getElementById('floating-cta');
+            const contactSection = document.getElementById('contact');
+            
+            const ctaObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        floatingCTA.style.display = 'none';
+                    } else {
+                        floatingCTA.style.display = 'flex';
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            if (contactSection) {
+                ctaObserver.observe(contactSection);
+            }
+        }
+
+        // Enhanced demo link interactions
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize all enhanced features
+            initializeWaveAnimation();
+            initializeFloatingCTA();
+
+            // Demo link handlers with analytics (safe)
+            const demoLinks = document.querySelectorAll('a[href*="demo"], a[href="#demo"]');
+            demoLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    // Track demo interest safely
+                    const demoData = {
+                        demo_type: link.textContent.trim(),
+                        timestamp: new Date().toISOString(),
+                        referrer: document.referrer,
+                        session_id: getSessionId()
+                    };
+
+                    sendToWebhookSafe('https://odia.dev/api/track/demo', demoData);
+
+                    // Google Analytics demo tracking
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'demo_click', {
+                            event_category: 'engagement',
+                            event_label: demoData.demo_type
+                        });
+                    }
+                });
+            });
+
+            // WhatsApp link enhancement with UTM tracking
+            const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
+            whatsappLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    // Add UTM parameters for WhatsApp tracking
+                    const url = new URL(link.href);
+                    const currentTime = new Date().toISOString();
+                    const currentText = url.searchParams.get('text') || '';
+                    url.searchParams.set('text', `${currentText} [Source: Website-${currentTime}]`);
+                    link.href = url.toString();
+                });
+            });
+        });
+
+        // Enhanced error handling and fallbacks (Fixed illegal invocation)
+        window.addEventListener('error', (e) => {
+            // Filter out CSS security errors and illegal invocation errors
+            const errorMessage = e.error?.message || e.message || '';
+            const isSecurityError = errorMessage.includes('cssRules') || errorMessage.includes('SecurityError');
+            const isNetworkError = errorMessage.includes('Failed to fetch') || errorMessage.includes('network');
+            const isCSSError = errorMessage.includes('stylesheet') || errorMessage.includes('css');
+            const isIllegalInvocation = errorMessage.includes('Illegal invocation');
+            
+            // Only log critical application errors, not CSS/network/invocation issues
+            if (!isSecurityError && !isNetworkError && !isCSSError && !isIllegalInvocation && e.error && !errorMessage.includes('fetch')) {
+                // Use bound console method to prevent illegal invocation
+                const logError = console.warn.bind(console);
+                logError('Application error:', errorMessage);
+                
+                // Send only critical errors to monitoring
+                const errorData = {
+                    error: errorMessage,
+                    timestamp: new Date().toISOString(),
+                    url: window.location.href,
+                    user_agent: navigator.userAgent,
+                    critical: true
+                };
+
+                // Use the same safe webhook sender
+                sendToWebhookSafe('https://odia.dev/api/track/error', errorData);
+            }
+        });
+
+        // Prevent CSS rule access errors
+        window.addEventListener('DOMContentLoaded', () => {
+            // Override any CSS rule reading attempts to prevent security errors
+            if (typeof CSSStyleSheet !== 'undefined' && CSSStyleSheet.prototype.cssRules) {
+                const originalCSSRules = Object.getOwnPropertyDescriptor(CSSStyleSheet.prototype, 'cssRules');
+                if (originalCSSRules) {
+                    Object.defineProperty(CSSStyleSheet.prototype, 'cssRules', {
+                        get: function() {
+                            try {
+                                return originalCSSRules.get.call(this);
+                            } catch (e) {
+                                // Silently fail for cross-origin stylesheets
+                                return [];
+                            }
+                        }
+                    });
+                }
+            }
+        });
+
+        // Safe webhook sender utility
+        function sendToWebhookSafe(url, data, retries = 1) {
+            if (!navigator.onLine) return Promise.resolve(); // Skip if offline
+            
+            return fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Source': 'odia-website'
+                },
+                body: JSON.stringify(data)
+            }).catch(error => {
+                if (retries > 0) {
+                    setTimeout(() => sendToWebhookSafe(url, data, retries - 1), 2000);
+                }
+                // Silent fail - no console spam
+                return null;
+            });
+        }
+
+        // Performance monitoring (simplified)
+        window.addEventListener('load', () => {
+            // Only send if performance API is available
+            if (typeof performance !== 'undefined' && performance.getEntriesByType) {
+                const perf = performance.getEntriesByType('navigation')[0];
+                if (perf && perf.loadEventEnd > 0) {
+                    const perfData = {
+                        load_time: Math.round(perf.loadEventEnd - perf.navigationStart),
+                        dom_ready: Math.round(perf.domContentLoadedEventEnd - perf.navigationStart),
+                        timestamp: new Date().toISOString(),
+                        connection: navigator.connection?.effectiveType || 'unknown'
+                    };
+
+                    // Only send if load time is reasonable (not an error)
+                    if (perfData.load_time < 30000) {
+                        sendToWebhookSafe('https://odia.dev/api/track/performance', perfData);
+                    }
+                }
+            }
+        });
+
+        // Nigerian business hours notification
+        function showBusinessHoursNotification() {
+            const now = new Date();
+            const nigeriaTime = new Date(now.toLocaleString("en-US", {timeZone: "Africa/Lagos"}));
+            const hour = nigeriaTime.getHours();
+            
+            // Show notification if outside business hours (9 AM - 6 PM WAT)
+            if (hour < 9 || hour >= 18) {
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 100px;
+                    right: 20px;
+                    background: linear-gradient(135deg, #25D366, #22c55e);
+                    color: white;
+                    padding: 1rem 1.5rem;
+                    border-radius: 15px;
+                    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+                    z-index: 1001;
+                    max-width: 300px;
+                    font-size: 0.9rem;
+                    animation: slideInRight 0.5s ease-out;
+                `;
+                notification.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <span>🇳🇬</span>
+                        <strong>Outside Business Hours</strong>
+                        <button onclick="this.parentElement.parentElement.remove()" style="margin-left: auto; background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer;">×</button>
+                    </div>
+                    <p style="margin: 0;">Our AI agents work 24/7, but human support is available 9 AM - 6 PM WAT. You can still try our demo anytime!</p>
+                `;
+                document.body.appendChild(notification);
+                
+                // Auto remove after 10 seconds
+                setTimeout(() => {
+                    if (notification.parentElement) {
+                        notification.remove();
+                    }
+                }, 10000);
+            }
+        }
+
+        // Show business hours notification after 5 seconds
+        setTimeout(showBusinessHoursNotification, 5000);
+
+        // Add dynamic animations keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInRight {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            
+            @keyframes loadingProgress {
+                from { transform: translateX(-100%); }
+                to { transform: translateX(0); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+
+    <!-- Google Analytics 4 (Replace GA_MEASUREMENT_ID with actual ID) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script> -->
+    
+    <!-- Facebook Pixel (Replace PIXEL_ID with actual ID) -->
+    <!-- <script>
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+        document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', 'PIXEL_ID');
+        fbq('track', 'PageView');
+    </script> -->
+
+</body>
+</html>
